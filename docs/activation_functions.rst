@@ -1,20 +1,20 @@
 .. _activation_functions:
 
-====================
-Activation Functions
-====================
+========================
+Aktivasyon Fonksiyonları
+========================
 
 .. contents:: :local:
 
 .. _activation_linear:
 
-Linear
+Lineer
 ======
 
-A straight line function where activation is proportional to input ( which is the weighted sum from neuron ).
+Aktivasyonun girdiye (nörondan gelen ağırlıklı toplam) orantılı olduğu düz bir çizgi fonksiyonudur.
 
 +-------------------------------------------------------+------------------------------------------------------+
-| Function                                              | Derivative                                           |
+| Fonksiyon                                             | Türev                                                |
 +-------------------------------------------------------+------------------------------------------------------+
 | .. math::                                             | .. math::                                            |
 |      R(z,m) = \begin{Bmatrix} z*m    \\               |       R'(z,m) = \begin{Bmatrix} m     \\             |
@@ -30,16 +30,16 @@ A straight line function where activation is proportional to input ( which is th
 +-------------------------------------------------------+------------------------------------------------------+
 
 
-.. rubric:: Pros
+.. rubric:: Artıları
 
-- It gives a range of activations, so it is not binary activation.
-- We can definitely connect a few neurons together and if more than 1 fires, we could take the max ( or softmax) and decide based on that.
+- Bir aktivasyon aralığı verir, bu nedenle ikili (binary) bir aktivasyon değildir.
+- Birkaç nöronu birbirine bağlayabiliriz ve 1'den fazlası ateşlenirse, max (veya softmax) alıp buna göre karar verebiliriz.
 
-.. rubric:: Cons
+.. rubric:: Eksileri
 
-- For this function, derivative is a constant. That means, the gradient has no relationship with X.
-- It is a constant gradient and the descent is going to be on constant gradient.
-- If there is an error in prediction, the changes made by back propagation is constant and not depending on the change in input delta(x) !
+- Bu fonksiyon için türev sabittir. Bu, gradient'in X ile bir ilişkisi olmadığı anlamına gelir.
+- Sabit bir gradient'tir ve iniş (descent) sabit bir gradient üzerinde olacaktır.
+- Tahminde bir hata varsa, back propagation tarafından yapılan değişiklikler sabittir ve girdideki değişime (delta(x)) bağlı değildir!
 
 
 
@@ -48,12 +48,12 @@ A straight line function where activation is proportional to input ( which is th
 ELU
 ===
 
-Exponential Linear Unit or its widely known name ELU is a function that tend to converge cost to zero faster and produce more accurate results. Different to other activation functions, ELU has a extra alpha constant which should be positive number.
+Exponential Linear Unit veya daha yaygın adıyla ELU, maliyeti daha hızlı sıfıra yakınsatan ve daha doğru sonuçlar üreten bir fonksiyondur. Diğer aktivasyon fonksiyonlarından farklı olarak, ELU pozitif bir sayı olması gereken ekstra bir alfa sabitine sahiptir.
 
-ELU is very similiar to RELU except negative inputs. They are both in identity function form for non-negative inputs. On the other hand, ELU becomes smooth slowly until its output equal to -α whereas RELU sharply smoothes.
+ELU, negatif girdiler dışında RELU'ya çok benzer. Her ikisi de negatif olmayan girdiler için birim fonksiyon formundadır. Öte yandan, ELU çıktısı -α'ya eşit olana kadar yavaşça pürüzsüzleşirken, RELU keskin bir şekilde pürüzsüzleşir.
 
 +-------------------------------------------------------+------------------------------------------------------+
-| Function                                              | Derivative                                           |
+| Fonksiyon                                             | Türev                                                |
 +-------------------------------------------------------+------------------------------------------------------+
 | .. math::                                             | .. math::                                            |
 |      R(z) = \begin{Bmatrix} z & z > 0 \\              |       R'(z) = \begin{Bmatrix} 1 & z>0 \\             |
@@ -69,15 +69,15 @@ ELU is very similiar to RELU except negative inputs. They are both in identity f
 +-------------------------------------------------------+------------------------------------------------------+
 
 
-.. rubric:: Pros
+.. rubric:: Artıları
 
-- ELU becomes smooth slowly until its output equal to -α whereas RELU sharply smoothes.
-- ELU is a strong alternative to ReLU.
-- Unlike to ReLU, ELU can produce negative outputs.
+- ELU, çıktısı -α'ya eşit olana kadar yavaşça pürüzsüzleşirken, RELU keskin bir şekilde pürüzsüzleşir.
+- ELU, ReLU için güçlü bir alternatiftir.
+- ReLU'dan farklı olarak, ELU negatif çıktılar üretebilir.
 
-.. rubric:: Cons
+.. rubric:: Eksileri
 
-- For x > 0, it can blow up the activation with the output range of [0, inf].
+- x > 0 için, [0, inf] çıktı aralığı ile aktivasyonu şişirebilir.
 
 
 .. _activation_relu:
@@ -85,10 +85,10 @@ ELU is very similiar to RELU except negative inputs. They are both in identity f
 ReLU
 ====
 
-A recent invention which stands for Rectified Linear Units. The formula is deceptively simple: :math:`max(0,z)`. Despite its name and appearance, it’s not linear and provides the same benefits as Sigmoid (i.e. the ability to learn nonlinear functions), but with better performance.
+Rectified Linear Units'in kısaltması olan yeni bir buluştur. Formülü aldatıcı bir şekilde basittir: :math:`max(0,z)`. Adına ve görünümüne rağmen, lineer değildir ve Sigmoid ile aynı faydaları (yani doğrusal olmayan fonksiyonları öğrenme yeteneği) daha iyi bir performansla sağlar.
 
 +-------------------------------------------------------+------------------------------------------------------+
-| Function                                              | Derivative                                           |
+| Fonksiyon                                             | Türev                                                |
 +-------------------------------------------------------+------------------------------------------------------+
 | .. math::                                             | .. math::                                            |
 |      R(z) = \begin{Bmatrix} z & z > 0 \\              |       R'(z) = \begin{Bmatrix} 1 & z>0 \\             |
@@ -105,19 +105,19 @@ A recent invention which stands for Rectified Linear Units. The formula is decep
 
 .. quick create tables with tablesgenerator.com/text_tables and import our premade template in figures/
 
-.. rubric:: Pros
+.. rubric:: Artıları
 
-- It avoids and rectifies vanishing gradient problem.
-- ReLu is less computationally expensive than tanh and sigmoid because it involves simpler mathematical operations.
+- Kaybolan gradient (vanishing gradient) problemini önler ve düzeltir.
+- ReLu, daha basit matematiksel işlemler içerdiği için tanh ve sigmoid'den daha az hesaplama maliyetlidir.
 
-.. rubric:: Cons
+.. rubric:: Eksileri
 
-- One of its limitations is that it should only be used within hidden layers of a neural network model.
-- Some gradients can be fragile during training and can die. It can cause a weight update which will makes it never activate on any data point again. In other words, ReLu can result in dead neurons.
-- In another words, For activations in the region (x<0) of ReLu, gradient will be 0 because of which the weights will not get adjusted during descent. That means, those neurons which go into that state will stop responding to variations in error/ input (simply because gradient is 0, nothing changes). This is called the dying ReLu problem.
-- The range of ReLu is :math:`[0, \infty)`. This means it can blow up the activation.
+- Sınırlamalarından biri, yalnızca bir sinir ağı modelinin gizli katmanlarında kullanılması gerektiğidir.
+- Bazı gradient'ler eğitim sırasında kırılgan olabilir ve ölebilir. Bu, bir ağırlık güncellemesine neden olabilir ve bu da onun herhangi bir veri noktasında bir daha asla etkinleşmemesini sağlar. Başka bir deyişle, ReLu ölü nöronlara neden olabilir.
+- Başka bir deyişle, ReLu'nun (x<0) bölgesindeki aktivasyonlar için, gradient 0 olacaktır, bu nedenle ağırlıklar iniş sırasında ayarlanmayacaktır. Bu, bu duruma giren nöronların hata/girdi varyasyonlarına yanıt vermeyi durduracağı anlamına gelir (çünkü gradient 0'dır, hiçbir şey değişmez). Buna ölen ReLu problemi denir.
+- ReLu'nun aralığı :math:`[0, \infty)`'dur. Bu, aktivasyonu şişirebileceği anlamına gelir.
 
-.. rubric:: Further reading
+.. rubric:: Daha fazla bilgi
 
 - `Deep Sparse Rectifier Neural Networks <http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf>`_ Glorot et al., (2011)
 - `Yes You Should Understand Backprop <https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b>`_, Karpathy (2016)
@@ -128,10 +128,10 @@ A recent invention which stands for Rectified Linear Units. The formula is decep
 LeakyReLU
 =========
 
-LeakyRelu is a variant of ReLU. Instead of being 0 when :math:`z < 0`, a leaky ReLU allows a small, non-zero, constant gradient :math:`\alpha` (Normally, :math:`\alpha = 0.01`). However, the consistency of the benefit across tasks is presently unclear. [1]_
+LeakyRelu, ReLU'nun bir çeşididir. :math:`z < 0` olduğunda 0 olmak yerine, sızdıran bir ReLU küçük, sıfır olmayan, sabit bir gradyan :math:`\alpha`'ya izin verir (Normalde, :math:`\alpha = 0.01`). Ancak, faydanın görevler arasındaki tutarlılığı şu anda belirsizdir. [1]_
 
 +-------------------------------------------------------+------------------------------------------------------+
-| Function                                              | Derivative                                           |
+| Fonksiyon                                             | Türev                                                |
 +-------------------------------------------------------+------------------------------------------------------+
 | .. math::                                             | .. math::                                            |
 |      R(z) = \begin{Bmatrix} z & z > 0 \\              |       R'(z) = \begin{Bmatrix} 1 & z>0 \\             |
@@ -150,15 +150,15 @@ LeakyRelu is a variant of ReLU. Instead of being 0 when :math:`z < 0`, a leaky R
 
 
 
-.. rubric:: Pros
+.. rubric:: Artıları
 
-- Leaky ReLUs are one attempt to fix the "dying ReLU" problem by having a small negative slope (of 0.01, or so).
+- Leaky ReLU'lar, küçük bir negatif eğime (0.01 veya civarı) sahip olarak "ölen ReLU" sorununu çözme girişimlerinden biridir.
 
-.. rubric:: Cons
+.. rubric:: Eksileri
 
-- As it possess linearity, it can't be used for the complex Classification. It lags behind the Sigmoid and Tanh for some of the use cases.
+- Doğrusallığa sahip olduğu için karmaşık Sınıflandırma için kullanılamaz. Bazı kullanım durumları için Sigmoid ve Tanh'ın gerisinde kalır.
 
-.. rubric:: Further reading
+.. rubric:: Daha fazla bilgi
 
 - `Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification <https://arxiv.org/pdf/1502.01852.pdf>`_, Kaiming He et al. (2015)
 
@@ -168,10 +168,10 @@ LeakyRelu is a variant of ReLU. Instead of being 0 when :math:`z < 0`, a leaky R
 Sigmoid
 =======
 
-Sigmoid takes a real value as input and outputs another value between 0 and 1. It’s easy to work with and has all the nice properties of activation functions: it’s non-linear, continuously differentiable, monotonic, and has a fixed output range.
+Sigmoid, girdi olarak gerçek bir değer alır ve 0 ile 1 arasında başka bir değer çıktılar. Çalışması kolaydır ve aktivasyon fonksiyonlarının tüm güzel özelliklerine sahiptir: doğrusal değildir, sürekli türevlenebilirdir, monotondur ve sabit bir çıktı aralığına sahiptir.
 
 +-----------------------------------------------------+-----------------------------------------------------+
-| Function                                            | Derivative                                          |
+| Fonksiyon                                           | Türev                                               |
 +-----------------------------------------------------+-----------------------------------------------------+
 | .. math::                                           | .. math::                                           |
 |      S(z) = \frac{1} {1 + e^{-z}}                   |      S'(z) = S(z) \cdot (1 - S(z))                  |
@@ -186,24 +186,24 @@ Sigmoid takes a real value as input and outputs another value between 0 and 1. I
 
 .. quick create tables with tablesgenerator.com/text_tables and import our premade template in figures/
 
-.. rubric:: Pros
+.. rubric:: Artıları
 
-- It is nonlinear in nature. Combinations of this function are also nonlinear!
-- It will give an analog activation unlike step function.
-- It has a smooth gradient too.
-- It’s good for a classifier.
-- The output of the activation function is always going to be in range (0,1) compared to (-inf, inf) of linear function. So we have our activations bound in a range. Nice, it won’t blow up the activations then.
+- Doğası gereği doğrusal değildir. Bu fonksiyonun kombinasyonları da doğrusal değildir!
+- Adım fonksiyonunun aksine analog bir aktivasyon verecektir.
+- Pürüzsüz bir gradient'e de sahiptir.
+- Bir sınıflandırıcı için iyidir.
+- Aktivasyon fonksiyonunun çıktısı, lineer fonksiyonun (-inf, inf) aralığına kıyasla her zaman (0,1) aralığında olacaktır. Böylece aktivasyonlarımız bir aralıkta sınırlanmış olur. Güzel, o zaman aktivasyonları şişirmez.
 
 
-.. rubric:: Cons
+.. rubric:: Eksileri
 
-- Towards either end of the sigmoid function, the Y values tend to respond very less to changes in X.
-- It gives rise to a problem of “vanishing gradients”.
-- Its output isn’t zero centered. It makes the gradient updates go too far in different directions. 0 < output < 1, and it makes optimization harder.
-- Sigmoids saturate and kill gradients.
-- The network refuses to learn further or is drastically slow ( depending on use case and until gradient /computation gets hit by floating point value limits ).
+- Sigmoid fonksiyonunun her iki ucuna doğru, Y değerleri X'teki değişikliklere çok daha az yanıt verme eğilimindedir.
+- "Kaybolan gradient" (vanishing gradients) sorununa yol açar.
+- Çıktısı sıfır merkezli değildir. Bu, gradient güncellemelerinin farklı yönlerde çok uzağa gitmesine neden olur. 0 < çıktı < 1, ve bu optimizasyonu zorlaştırır.
+- Sigmoid'ler doygunluğa ulaşır ve gradient'leri öldürür.
+- Ağ daha fazla öğrenmeyi reddeder veya (kullanım durumuna ve gradient/hesaplama kayan nokta değeri sınırlarına ulaşana kadar) büyük ölçüde yavaşlar.
 
-.. rubric:: Further reading
+.. rubric:: Daha fazla bilgi
 
 - `Yes You Should Understand Backprop <https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b>`_, Karpathy (2016)
 
@@ -213,11 +213,11 @@ Sigmoid takes a real value as input and outputs another value between 0 and 1. I
 Tanh
 ====
 
-Tanh squashes a real-valued number to the range [-1, 1]. It's non-linear. But unlike Sigmoid, its output is zero-centered.
-Therefore, in practice the tanh non-linearity is always preferred to the sigmoid nonlinearity. [1]_ 
+Tanh, gerçek değerli bir sayıyı [-1, 1] aralığına sıkıştırır. Doğrusal değildir. Ancak Sigmoid'den farklı olarak, çıktısı sıfır merkezlidir.
+Bu nedenle, pratikte tanh doğrusalsızlığı her zaman sigmoid doğrusalsızlığına tercih edilir. [1]_
 
 +-----------------------------------------------------+-----------------------------------------------------+
-| Function                                            | Derivative                                          |
+| Fonksiyon                                           | Türev                                               |
 +-----------------------------------------------------+-----------------------------------------------------+
 | .. math::                                           | .. math::                                           |
 |      tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}|      tanh'(z) = 1 - tanh(z)^{2}                     |
@@ -232,21 +232,21 @@ Therefore, in practice the tanh non-linearity is always preferred to the sigmoid
 
 .. quick create tables with tablesgenerator.com/text_tables and import our premade template in figures/
 
-.. rubric:: Pros
+.. rubric:: Artıları
 
-- The gradient is stronger for tanh than sigmoid ( derivatives are steeper).
+- Tanh için gradient, sigmoid'den daha güçlüdür (türevler daha diktir).
 
-.. rubric:: Cons
+.. rubric:: Eksileri
 
-- Tanh also has the vanishing gradient problem.
+- Tanh'da da kaybolan gradient (vanishing gradient) sorunu vardır.
 
 
 Softmax
 =======
 
-Softmax function calculates the probabilities distribution of the event over ‘n’ different events. In general way of saying, this function will calculate the probabilities of each target class over all possible target classes. Later the calculated probabilities will be helpful for determining the target class for the given inputs.
+Softmax fonksiyonu, 'n' farklı olay üzerinden olayın olasılık dağılımını hesaplar. Genel bir deyişle, bu fonksiyon tüm olası hedef sınıfları üzerinden her bir hedef sınıfının olasılıklarını hesaplayacaktır. Daha sonra hesaplanan olasılıklar, verilen girdiler için hedef sınıfını belirlemede yardımcı olacaktır.
 
 
-.. rubric:: References
+.. rubric:: Referanslar
 
 .. [1] http://cs231n.github.io/neural-networks-1/
