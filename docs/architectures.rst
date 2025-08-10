@@ -1,23 +1,20 @@
 .. _architectures:
 
-=============
-Architectures
-=============
+===========
+Mimariler
+===========
 
 .. contents:: :local:
 
 Autoencoder
 ===========
 
-An autoencoder is a type of feedforward neural network that attempts to copy
-its input to its output. Internally, it has a hidden layer, **h**, that
-describes a **code**, used to represent the input. The network consists of
-two parts:
+Bir autoencoder, girdisini çıktısına kopyalamaya çalışan bir feedforward (ileri beslemeli) yapay sinir ağı türüdür. İç yapısında girdiyi temsil etmek için kullanılan **kod**u (code) tanımlayan **h** isimli gizli bir katman bulunur. Ağ iki kısımdan oluşur:
 
-* An *encoder* function: :math:`h = f(x)`.
-* A *decoder* function, that produces a reconstruction: :math:`r = g(h)`.
+* *Encoder* (kodlayıcı) fonksiyon: :math:`h = f(x)`.
+* *Decoder* (çözücü) fonksiyon: yeniden yapı (rekonstrüksiyon) üretir: :math:`r = g(h)`.
 
-The figure below shows the presented architecture.
+Aşağıdaki şekil bu mimariyi göstermektedir.
 
 .. figure:: images/autoencoder_architecture.png
        :align: center
@@ -25,34 +22,15 @@ The figure below shows the presented architecture.
 
        Source [#autoenc]_
 
-The autoencoder compresses the input into a lower-dimensional code, and then
-it reconstructs the output from this representation. The code is a compact
-"summary", or "compression", of the input, and it is also called the
-*latent-space
-representation*.
+Autoencoder girdi verisini daha düşük boyutlu bir koda sıkıştırır ve sonra bu temsilden çıktıyı yeniden inşa eder. Kod (code), girdinin kompakt bir "özeti" ya da "sıkıştırması"dır; aynı zamanda *gizil uzay (latent space) temsili* olarak da adlandırılır.
 
-If an autoencoder simply learned to set :math:`g(f(x))=x` everywhere, then it would
-not be very
-useful; instead, autoencoders are designed to be unable to learn to copy
-perfectly. They are restricted in ways that allow them to copy only
-approximately, and to copy only input that resembles the training data.
-Because the model is forced to prioritize which aspects of the input to copy,
-it learns useful properties of the data.
+Eğer bir autoencoder her yerde :math:`g(f(x))=x` öğrenmiş olsaydı pek faydalı olmazdı; bunun yerine autoencoder'lar girdi kopyasını kusursuz çıkartamayacak şekilde tasarlanır. Böylece yalnızca yaklaşık kopyalayabilir ve sadece eğitim verisine benzeyen girdileri iyi kopyalayabilir. Model, girdinin hangi yönlerini koruyacağını önceliklendirmeye zorlandığından verinin faydalı özelliklerini öğrenir.
 
-In order to build an autoencoder, three things are needed: an encoding
-method, a decoding method, and a loss function to compare the output with the
-target.
+Bir autoencoder inşa etmek için üç şeye ihtiyaç vardır: bir kodlama yöntemi (encoding), bir dekodlama yöntemi (decoding) ve çıktı ile hedefi karşılaştıracak bir kayıp (loss) fonksiyonu.
 
-Both the encoder and the decoder are fully-connected feedforward neural
-networks. The code is a single layer of an artificial neural network, with
-the dimensionality of our choice. The number of nodes in the code layer (the
-*code size*) is a *hyperparameter* to be set before training the autoencoder.
+Hem encoder hem decoder tam bağlantılı (fully-connected) feedforward sinir ağlarıdır. Kod, seçtiğimiz boyutta tek katmanlı bir yapay sinir ağı katmanıdır. Kod katmanındaki düğüm (nöron) sayısı (*code size*) eğitimden önce belirlenen bir *hiperparametre*dir.
 
-The figure below shows the autoencoder architecture. First, the input passes
-through the encoder, which is a fully-connected neural network, in order to
-produce the code. The decoder, which has the similar neural network
-structure, then produces the output by using the code only. The aim is to
-get an output identical to the input.
+Aşağıdaki şekil autoencoder mimarisini gösterir. Önce girdi, kodu üretmek için tam bağlantılı bir sinir ağı olan encoder'dan geçer. Benzer yapıda olan decoder yalnızca kodu kullanarak çıktıyı üretir. Amaç girdiye özdeş bir çıktı elde etmektir.
 
 .. figure:: images/autoencoder_2.png
       :align: center
@@ -60,198 +38,149 @@ get an output identical to the input.
 
       Source [#2a]_
 
-Traditionally, autoencoders were used for dimensionality reduction or feature
-learning. More recently, theoretical connections between autoencoders and
-latent variable models have brought autoencoders to the forefront of
-generative modeling.
-As a compression method, autoencoders do not perform better than their
-alternatives. And the fact that autoencoders are data-specific makes them
-impractical as a general technique.
+Geleneksel olarak autoencoder'lar boyut indirgeme (dimensionality reduction) veya özellik öğrenme (feature learning) için kullanıldı. Daha yakın zamanda autoencoder'lar ile gizil değişken (latent variable) modelleri arasındaki teorik bağlantılar, autoencoder'ları üretici (generative) modellemenin ön saflarına taşıdı. Bir sıkıştırma yöntemi olarak alternatiflerinden daha iyi performans göstermezler ve veri-özel olmaları onları genel amaçlı bir teknik olarak pratik olmaktan uzaklaştırır.
 
-In general, autoencoders have three common use cases:
+Genel olarak üç yaygın kullanım senaryosu vardır:
 
-* **Data denoising:** It should be noted that denoising autoencoders are not
-  meant to automatically denoise an image, instead they were invented to help
-  the hidden layers of the autoencoder learn more robust filters, and reduce
-  the the risk of overfitting.
-* **Dimensionality reduction:** Visualizing high-dimensional data is
-  challenging. t-SNE [#tsne]_ is the most commonly used method, but struggles
-  with large number of dimensions (typically above 32).
-  Therefore, autoencoders can be used as a preprocessing step to reduce the
-  dimensionality, and this compressed representation is used by t-SNE to
-  visualize the data in 2D space.
-* **Variational Autoencoders (VAE):** this is a more modern and complex
-  use-case of autoencoders. VAE learns the parameters of the probability
-  distribution modeling the input data, instead of learning an arbitrary
-  function in the case of vanilla autoencoders. By sampling points from this
-  distribution we can also use the VAE as a generative model [#vae]_.
+* **Veri gürültü giderme (data denoising):** Denoising autoencoder'ların bir görüntüyü otomatik olarak gürültüsüzleştirmek için değil, gizli katmanların daha dayanıklı filtreler öğrenmesine ve aşırı uyum (overfitting) riskini azaltmaya yardım etmek için icat edildiği unutulmamalıdır.
+* **Boyut indirgeme:** Yüksek boyutlu veriyi görselleştirmek zordur. t-SNE [#tsne]_ en yaygın kullanılan yöntemdir ancak çok yüksek boyutlarla (genelde 32 üstü) zorlanır. Bu nedenle autoencoder'lar ön işleme adımı olarak boyutu düşürmekte kullanılabilir; sıkıştırılmış temsil t-SNE tarafından veriyi 2B alanda görselleştirmek için kullanılır.
+* **Varyasyonel Autoencoder (VAE):** Autoencoder'ların daha modern ve karmaşık bir kullanım alanıdır. VAE, klasik (vanilla) autoencoder'larda olduğu gibi keyfi bir fonksiyon öğrenmek yerine girdi verisini modelleyen olasılık dağılımının parametrelerini öğrenir. Bu dağılımdan noktalar örnekleyerek VAE'yi üretici bir model olarak da kullanabiliriz [#vae]_.
 
 
 .. rubric:: Model
 
-An example implementation in PyTorch.
+PyTorch ile örnek bir implementasyon.
 
 .. literalinclude:: ../code/autoencoder.py
       :pyobject: Autoencoder
 
-.. rubric:: Training
+.. rubric:: Eğitim
 
 .. literalinclude:: ../code/autoencoder.py
       :pyobject: train
 
-.. rubric:: Further reading
+.. rubric:: Ek okuma
 
-- `Convolutional Autoencoders <https://pgaleone.eu/neural-networks/2016/11/24/convolutional-autoencoders/>`_
-- `Deep Learning Book <http://www.deeplearningbook.org/contents/autoencoders.html>`_
+- `Konvolüsyonel Autoencoder'lar <https://pgaleone.eu/neural-networks/2016/11/24/convolutional-autoencoders/>`_
+- `Deep Learning Kitabı <http://www.deeplearningbook.org/contents/autoencoders.html>`_
 
 
 CNN
 ===
 
-The *convolutional neural network*, or *CNN*, is a feed-forward neural network
-which has at least one convolutional layer. This type of deep neural network
-is used for processing structured arrays of data. It is distinguished from other
-neural networks by its superior performance with speech, audio, and
-especially, image data. For the latter data type, CNNs are commonly employed
-in computer vision tasks, like image classification, since they are
-especially good at finding out patterns from the input images, such as lines,
-circles, or more complex objects, e.g., human faces.
+Konvolüsyonel sinir ağı (*convolutional neural network* - *CNN*), en az bir konvolüsyon katmanı içeren bir feed-forward sinir ağıdır. Bu tür derin ağlar yapılandırılmış veri dizilerini (özellikle görüntü) işlemek için kullanılır. Konuşma, ses ve özellikle görüntü verilerinde diğer ağlara göre üstün performans göstermesiyle ayrışır. Görüntü sınıflandırma gibi bilgisayarla görme görevlerinde, giriş görüntülerinden çizgi, daire veya insan yüzü gibi daha karmaşık nesne kalıplarını bulmada çok başarılıdır.
 
-Convolutional neural networks comprise many convolutional layers, stacked one
-on top of the other, in a sequence. The sequential architecture of CNNs
-allows them to learn hierarchical features. Every layer can recognize shapes,
-and the deeper the network goes, the more complex are the shapes which can be
-recognized. The design of convolutional layers in a CNN reflects the
-structure of the human visual cortex. In fact, our visual cortex is similarly
-made of different layers, which process an image in our sight by sequentially identifying more and more complex features.
+CNN'ler bir dizi halinde üst üste yığılmış birçok konvolüsyon katmanı içerir. Bu sıralı mimari hiyerarşik özellikler öğrenmelerini sağlar. Her katman şekilleri tanıyabilir ve ağ derinleştikçe tanınabilen şekiller daha karmaşık hale gelir. CNN'deki konvolüsyon katmanlarının tasarımı insan görsel korteksinin yapısını yansıtır; görsel korteksimiz de benzer biçimde bir görüntüyü giderek daha karmaşık özellikleri çıkararak katman katman işler.
 
-The CNN architecture is made up of three main distinct layers:
+CNN mimarisi üç temel katmandan oluşur:
 
-#. Convolutional layer
-#. Pooling layer
-#. Fully-connected (FC) layer
+#. Konvolüsyon katmanı
+#. Havuzlama (Pooling) katmanı
+#. Tam bağlantılı (Fully-connected - FC) katman
 
 .. figure:: images/cnn.jpg
       :align: center
       :width: 600 px
 
-      **Overview of CNN architecture.** The architecture of CNNs follows this
-      structure, but with a greater number of layers for each layer’s type. The
-      convolutional and pooling layers are layers peculiar to CNNs, while the
-      fully-connected layer, activation function and output layer, are also
-      present in regular feed-forward neural networks. Source: [2]
+      **CNN mimarisine genel bakış.** CNN mimarileri bu yapıyı takip eder ancak her tür için daha fazla katman barındırabilir. Konvolüsyon ve pooling katmanları CNN'lere özgüdür; tam bağlantılı katman, aktivasyon fonksiyonu ve çıktı katmanı ise klasik feed-forward ağlarda da bulunur. Kaynak: [2]
 
-When working with image data, the CNN architecture accepts as input a 3D
-volume, or a 1D vector depending if the image data is in RGB format, for the
-first case, or in grayscale format, for the latter. Then it transforms the input
-through different equations, and it outputs a class. The convolutional layer
-is the first layer of the convolutional neural network. While this first
-layer can be followed by more convolutional layers, or pooling layers, the
-fully-connected layer remains the last layer of the network, which outputs
-the result. At every subsequent convolutional layer, the CNN increases its
-complexity, and it can identify greater portions in the image. In the first
-layers, the algorithm can recognize simpler features such as color or edges.
-Deeper in the network, it becomes able to identify both larger objects in the
-image and more complex ones. In the last layers, before the image reaches the
-final FC layer, the CNN identifies the full object in the image.
+Görüntü verisi ile çalışırken CNN mimarisi RGB ise 3B hacim, gri tonlu ise 1B vektör şeklinde girdi alır. Girdi çeşitli işlemlerden geçirilir ve bir sınıf çıktısı üretilir. İlk katman konvolüsyon katmanıdır; ardından başka konvolüsyon ve pooling katmanları gelebilir. Sonuç çıktısını üreten son katman ise tam bağlantılı katmandır. Her ek konvolüsyon katmanında ağın temsil kapasitesi artar ve görüntünün daha büyük veya daha karmaşık kısımlarını tanıyabilir. İlk katmanlar renk veya kenar gibi basit özellikleri yakalarken, daha derin katmanlar daha büyük ve karmaşık nesneleri ayırt eder. Son katmanlara gelindiğinde nihai FC katmanından önce nesnenin tamamı tanımlanmış olur.
 
 
 .. rubric:: Model
 
-An example implementation of a CNN in PyTorch.
+PyTorch ile örnek bir CNN implementasyonu.
 
 .. literalinclude:: ../code/cnn.py
       :pyobject: CNN
 
-.. rubric:: Training
+.. rubric:: Eğitim
 
 .. literalinclude:: ../code/cnn.py
       :pyobject: train
 
-.. rubric:: Further reading
+.. rubric:: Ek okuma
 
-- `CS231 Convolutional Networks <http://cs231n.github.io/convolutional-networks>`_
-- `Deep Learning Book <http://www.deeplearningbook.org/contents/convnets.html>`_
+- `CS231 Konvolüsyonel Ağlar <http://cs231n.github.io/convolutional-networks>`_
+- `Deep Learning Kitabı <http://www.deeplearningbook.org/contents/convnets.html>`_
 
 
 GAN
 ===
-A Generative Adversarial Network (GAN) is a type of network which creates novel tensors (often images, voices, etc.). The generative portion of the architecture competes with the discriminator part of the architecture in a zero-sum game. The goal of the generative network is to create novel tensors which the adversarial network attempts to classify as real or fake. The goal of the generative network is generate tensors where the discriminator network determines that the tensor has a 50% chance of being fake and a 50% chance of being real.
+Üretici Çekişmeli Ağ (Generative Adversarial Network - GAN) yeni tensörler (çoğunlukla görüntü, ses vb.) üreten bir ağ türüdür. Mimari içindeki üretici (generator) kısmı ile ayrıştırıcı (discriminator) kısmı sıfır toplamlı (zero-sum) bir oyunda rekabet eder. Üreticinin hedefi, ayrıştırıcının gerçek mi sahte mi olduğunu sınıflandırmaya çalıştığı yeni örnekler üretmektir. İdeal durumda üretici, ayrıştırıcının çıktı için %50 sahte / %50 gerçek olasılığı vermesini sağlayacak kadar ikna edici örnekler üretir.
 
-Figure from [3].
+Şekil [3].
 
 .. image:: images/gan.png
       :align: center
 
 .. rubric:: Model
 
-An example implementation in PyTorch.
+PyTorch ile örnek bir implementasyon.
 
 
-.. rubric:: Generator
+.. rubric:: Üretici (Generator)
 
 .. literalinclude:: ../code/gan.py
       :pyobject: Generator
       
-.. rubric:: Discriminator
+.. rubric:: Ayrıştırıcı (Discriminator)
 
 .. literalinclude:: ../code/gan.py
       :pyobject: Discriminator
 
 
-.. rubric:: Training
+.. rubric:: Eğitim
 
 .. literalinclude:: ../code/gan.py
       :pyobject: train
 
-.. rubric:: Further reading
+.. rubric:: Ek okuma
 
 - `Generative Adversarial Networks <http://guertl.me/post/162759264070/generative-adversarial-networks>`_
-- `Deep Learning Book <http://www.deeplearningbook.org/contents/generative_models.html>`_
-- `PyTorch DCGAN Example <https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html>`_
-- `Original Paper <https://papers.nips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf>`_
+- `Deep Learning Kitabı <http://www.deeplearningbook.org/contents/generative_models.html>`_
+- `PyTorch DCGAN Örneği <https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html>`_
+- `Orijinal Makale <https://papers.nips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf>`_
 
 MLP
 ===
 
-A Multi Layer Perceptron (MLP) is a neural network with only fully connected layers. Figure from [5].
+Çok Katmanlı Algılayıcı (Multi Layer Perceptron - MLP) yalnızca tam bağlantılı katmanlardan oluşan bir sinir ağıdır. Şekil [5].
 
 .. image:: images/mlp.jpg
       :align: center
 
 .. rubric:: Model
 
-An example implementation on FMNIST dataset in PyTorch. `Full Code <https://github.com/bfortuner/ml-cheatsheet/blob/master/code/mlp.py>`__
+FashionMNIST veri seti üzerinde PyTorch ile bir örnek implementasyon. `Tam Kod <https://github.com/bfortuner/ml-cheatsheet/blob/master/code/mlp.py>`__
 
-1. The input to the network is a vector of size 28*28 i.e.(image from FashionMNIST dataset of dimension 28*28 pixels flattened to sigle dimension vector).
-
-2. 2 fully connected hidden layers.
-
-3. Output layer with 10 outputs.(10 classes)
+1. Ağa giriş 28*28 boyutlu (FashionMNIST'teki 28*28 piksel görüntünün düzleştirilmiş) bir vektördür.
+2. 2 tam bağlantılı gizli katman.
+3. 10 çıktılı (10 sınıf) çıktı katmanı.
 
 .. literalinclude:: ../code/mlp.py
       :pyobject: MLP
 
-.. rubric:: Training
+.. rubric:: Eğitim
 
 .. literalinclude:: ../code/mlp.py
       :pyobject: train
 
-.. rubric:: Evaluating
+.. rubric:: Değerlendirme
 
 .. literalinclude:: ../code/mlp.py
       :pyobject: main
 
 
-.. rubric:: Further reading
+.. rubric:: Ek okuma
 
-TODO
+YAPILACAK (TODO)
 
 
 RNN
 ===
 
-Description of RNN use case and basic architecture.
+RNN kullanım senaryosu ve temel mimarinin açıklaması.
 
 .. image:: images/rnn.png
       :align: center
@@ -261,66 +190,60 @@ Description of RNN use case and basic architecture.
 .. literalinclude:: ../code/rnn.py
       :pyobject: RNN
 
-.. rubric:: Training
+.. rubric:: Eğitim
 
-In this example, our input is a list of last names, where each name is
-a variable length array of one-hot encoded characters. Our target is is a list of
-indices representing the class (language) of the name.
+Bu örnekte girdimiz soyadlarından oluşan bir listedir; her isim değişken uzunlukta tek-sıcak (one-hot) kodlanmış karakter dizisidir. Hedefimiz ise ismin ait olduğu sınıfı (dil) temsil eden indekslerin listesi.
 
-1. For each input name..
-2. Initialize the hidden vector
-3. Loop through the characters and predict the class
-4. Pass the final character's prediction to the loss function
-5. Backprop and update the weights
+1. Her girdi isim için...
+2. Gizli vektörü başlat
+3. Karakterler üzerinde döngü kurup sınıfı tahmin et
+4. Son karakterin tahminini kayıp fonksiyonuna ver
+5. Geri yayılım yap ve ağırlıkları güncelle
 
 .. literalinclude:: ../code/rnn.py
       :pyobject: train
 
-.. rubric:: Further reading
+.. rubric:: Ek okuma
 
 - `Jupyter notebook <https://github.com/bfortuner/ml-cheatsheet/blob/master/notebooks/rnn.ipynb>`_
-- `Deep Learning Book <http://www.deeplearningbook.org/contents/rnn.html>`_
+- `Deep Learning Kitabı <http://www.deeplearningbook.org/contents/rnn.html>`_
 
 
 VAE
 ===
 
-Autoencoders can encode an input image to a latent vector and decode it, but they can't generate novel images.
-Variational Autoencoders (VAE) solve this problem by adding a constraint: the latent vector representation should model a unit gaussian distribution.
-The Encoder returns the mean and variance of the learned gaussian. To generate a new image, we pass a new mean and variance to the Decoder.
-In other words, we "sample a latent vector" from the gaussian and pass it to the Decoder.
-It also improves network generalization and avoids memorization. Figure from [4].
+Autoencoder'lar bir girdi görüntüsünü gizil bir vektöre kodlayıp tekrar çözebilir fakat yeni (görülmemiş) görüntüler üretemez. Varyasyonel Autoencoder'lar (VAE) bu sorunu bir kısıt ekleyerek çözer: Gizil vektör temsili birim Gauss dağılımını modellemelidir. Encoder öğrenilen Gauss'un ortalama ve varyansını döndürür. Yeni bir görüntü üretmek için yeni bir ortalama ve varyans örnekleyip Decoder'a veririz; başka bir deyişle dağılımdan bir "gizil vektör örnekler" ve Decoder'a besleriz. Bu yaklaşım ağın genellemesini iyileştirir ve ezberlemeyi (memorization) önler. Şekil [4].
 
 .. image:: images/vae.png
       :align: center
 
-.. rubric:: Loss Function
+.. rubric:: Kayıp Fonksiyonu
 
-The VAE loss function combines reconstruction loss (e.g. Cross Entropy, MSE) with KL divergence.
+VAE kaybı yeniden yapılandırma kaybını (ör. Çapraz Entropi, MSE) KL ayrışması (divergence) ile birleştirir.
 
 .. literalinclude:: ../code/vae.py
       :pyobject: vae_loss
 
 .. rubric:: Model
 
-An example implementation in PyTorch of a Convolutional Variational Autoencoder.
+Konvolüsyonel Varyasyonel Autoencoder için PyTorch örnek implementasyonu.
 
 .. literalinclude:: ../code/vae.py
       :pyobject: VAE
 
-.. rubric:: Training
+.. rubric:: Eğitim
 
 .. literalinclude:: ../code/vae.py
       :pyobject: train
 
-.. rubric:: Further reading
+.. rubric:: Ek okuma
 
-- `Original Paper <https://arxiv.org/abs/1312.6114>`_
-- `VAE Explained <http://kvfrans.com/variational-autoencoders-explained>`_
-- `Deep Learning Book <http://www.deeplearningbook.org/contents/autoencoders.html>`_
+- `Orijinal Makale <https://arxiv.org/abs/1312.6114>`_
+- `VAE Açıklaması <http://kvfrans.com/variational-autoencoders-explained>`_
+- `Deep Learning Kitabı <http://www.deeplearningbook.org/contents/autoencoders.html>`_
 
 
-.. rubric:: References
+.. rubric:: Kaynaklar
 
 .. [1] https://hackernoon.com/autoencoders-deep-learning-bits-1-11731e200694
 .. [2] https://iq.opengenus.org/basics-of-machine-learning-image-classification-techniques/

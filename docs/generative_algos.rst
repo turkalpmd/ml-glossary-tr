@@ -1,13 +1,13 @@
 .. _generative_algos:
 
-=====================
-Generative Algorithms
-=====================
+=============================
+Generative Algorithms (Üretici Algoritmalar)
+=============================
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı yapan sen ol: `contribute (katkı) <https://github.com/bfortuner/ml-cheatsheet>`__
 
 
-.. rubric:: References
+.. rubric:: References (Kaynaklar)
 
 .. [1] Example Reference
 

@@ -1,42 +1,42 @@
 .. _clustering_algos:
 
-=====================
-Clustering Algorithms
-=====================
+============================
+Clustering Algorithms (Kümeleme Algoritmaları)
+============================
 
 
-Centroid
+Centroid (Merkez Tabanlı)
 ========
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! (contribute) `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
-Density
+Density (Yoğunluk Tabanlı)
 =======
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! (contribute) `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
-Distribution
+Distribution (Dağılım / İstatistiksel)
 ============
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! (contribute) `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
-Hierarchical
+Hierarchical (Hiyerarşik)
 ============
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! (contribute) `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
 K-Means
 ========
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! (contribute) `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
-Mean shift
+Mean Shift
 ==========
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! (contribute) `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
 
-.. rubric:: References
+.. rubric:: Kaynaklar (References)
 
 .. [1] https://en.wikipedia.org/wiki/Cluster_analysis
 

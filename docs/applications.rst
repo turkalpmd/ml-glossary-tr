@@ -1,82 +1,82 @@
 .. _applications:
 
-============
-Applications
-============
+=============
+Uygulamalar
+=============
 
 .. contents:: :local:
 
 
-Anomaly Detection
-=================
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-
-
-Computer Vision
-===============
-
-Classification
---------------
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-Object Detection
-----------------
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-Segmentation
-------------
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-
-
-Natural Language
+Anomali Tespiti
 ================
 
-Dialog Systems
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+
+
+Bilgisayarla Görü
+=================
+
+Sınıflandırma
+-------------
+
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+Nesne Tespiti
+-------------
+
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+Bölütleme (Segmentasyon)
+------------------------
+
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+
+
+Doğal Dil
+=========
+
+Diyalog Sistemleri
+------------------
+
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+Makine Çevirisi
+---------------
+
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+Konuşma Tanıma
 --------------
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
-Machine Translation
--------------------
+Metin Özetleme
+--------------
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
-Speech Recognition
-------------------
+Soru Yanıtlama
+--------------
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-Text Summarization
-------------------
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-Question Answering
-------------------
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
 
 
-Recommender Systems
-===================
+Öneri Sistemleri
+================
 
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
-
-
-
-Time-Series
-===========
-
-Be the first to `contribute! <https://github.com/bfortuner/ml-cheatsheet>`__
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
 
 
-.. rubric:: References
 
-.. [1] Example Reference
+Zaman Serileri
+==============
+
+İlk katkıyı sen yap! `Katkıda bulun <https://github.com/bfortuner/ml-cheatsheet>`__
+
+
+.. rubric:: Kaynaklar
+
+.. [1] Örnek Kaynak

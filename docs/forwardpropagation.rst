@@ -1,74 +1,74 @@
 .. _forwardpropagation:
 
 ==================
-Forwardpropagation
+Forwardpropagation (İleri Yayılım)
 ==================
 
 .. contents:: :local:
 
-Simple Network
+Simple Network (Basit Ağ)
 ==============
 
 .. image:: images/neural_network_simple.png
     :align: center
 
-Forward propagation is how neural networks make predictions. Input data is "forward propagated" through the network layer by layer to the final layer which outputs a prediction. For the toy neural network above, a single pass of forward propagation translates mathematically to:
+Forward propagation (ileri yayılım) yapay sinir ağlarının (neural networks) prediction (tahmin) üretme sürecidir. Girdi (input) verisi ağ boyunca katman katman (layer by layer) ileri doğru aktarılır ve son katman prediction üretir. Yukarıdaki toy (oyuncak / basitleştirilmiş) ağ için tek bir forward pass matematiksel olarak şöyledir:
 
 .. math::
 
   Prediction = A(\;A(\;X W_h\;)W_o\;)
 
-Where :math:`A` is an activation function like :ref:`activation_relu`, :math:`X` is the input and :math:`W_h` and :math:`W_o` are weights.
+:math:`A` burada :ref:`activation_relu` gibi bir activation function, :math:`X` girdi (input) ve :math:`W_h`, :math:`W_o` weight'lerdir.
 
-Steps
+Steps (Adımlar)
 -----
 
-1. Calculate the weighted input to the hidden layer by multiplying :math:`X` by the hidden weight :math:`W_h`
-2. Apply the activation function and pass the result to the final layer
-3. Repeat step 2 except this time :math:`X` is replaced by the hidden layer's output, :math:`H`
+1. Hidden layer'a giden weighted input (ağırlıklı giriş) için :math:`X` ile :math:`W_h` çarpılır.
+2. Activation function uygulanır ve sonuç final (çıktı) katmana iletilir.
+3. 2. adımı tekrarla; bu kez :math:`X` yerine hidden layer output'u :math:`H` kullanılır.
 
 
-Code
+Code (Kod)
 ----
 
-Let’s write a method feed_forward() to propagate input data through our simple network of 1 hidden layer. The output of this method represents our model’s prediction.
+Tek hidden layer içeren bu basit ağda girdiyi ileri taşıyan (propagate) bir feed_forward() metodu yazalım. Bu metodun çıktısı modelin prediction değeridir.
 
 .. literalinclude:: ../code/nn_simple.py
     :language: python
     :lines: 4-15
 
-``x`` is the input to the network, ``Zo`` and ``Zh`` are the weighted inputs and ``Wo`` and ``Wh`` are the weights.
+``x`` ağın input'u, ``Zo`` ve ``Zh`` weighted input (ağırlıklı giriş), ``Wo`` ve ``Wh`` ise weight matrisleridir.
 
 
-Larger Network
+Larger Network (Daha Büyük Ağ)
 ==============
 
-The simple network above is helpful for learning purposes, but in reality neural networks are much larger and more complex. Modern neural networks have many more hidden layers, more neurons per layer, more variables per input, more inputs per training set, and more output variables to predict. Here is a slightly larger network that will introduce us to matrices and the matrix operations used to train arbitrarily large neural networks.
+Yukarıdaki basit ağ öğrenme amaçlı faydalıdır; ancak gerçek dünyada neural network'ler çok daha büyük ve karmaşıktır: daha fazla hidden layer, katman başına daha fazla neuron, input başına daha fazla feature (değişken), training set içinde daha çok örnek ve çoğu zaman çoklu output değişkenleri. Aşağıdaki biraz daha büyük ağ bize matrices (matrisler) ve büyük ağları eğitmekte kullanılan matrix operations (matris işlemleri) kavramını tanıtır.
 
 .. image:: images/neural_network_w_matrices.png
     :align: center
 
 
-Architecture
+Architecture (Mimari)
 ------------
 
-To accomodate arbitrarily large inputs or outputs, we need to make our code more extensible by adding a few parameters to our network's __init__ method: inputLayerSize, hiddenLayerSize, outputLayerSize. We'll still limit ourselves to using one hidden layer, but now we can create layers of different sizes to respond to the different inputs or outputs.
+Keyfi (arbitrarily) büyük input veya output'ları desteklemek için kodumuzu genişletilebilir (extensible) kılacak parametreler ekleriz: inputLayerSize, hiddenLayerSize, outputLayerSize. Hâlâ tek hidden layer kullanıyoruz; ancak artık farklı boyutlarda layer oluşturup farklı girdi/çıktı yapılarına uyum sağlayabiliyoruz.
 
 .. literalinclude:: ../code/nn_matrix.py
     :language: python
     :lines: 6-8
 
 
-Weight Initialization
+Weight Initialization (Ağırlık Başlatma)
 ---------------------
 
-Unlike last time where ``Wh`` and ``Wo`` were scalar numbers, our new weight variables will be numpy arrays. Each array will hold all the weights for its own layer — one weight for each synapse. Below we initialize each array with the numpy's ``np.random.randn(rows, cols)`` method, which returns a matrix of random numbers drawn from a normal distribution with mean 0 and variance 1.
+Önceki basit örnekte ``Wh`` ve ``Wo`` scalar idi; şimdi weight değişkenleri numpy array (matris) olacak. Her array kendi layer'ına ait tüm weight'leri (her synapse için bir weight) tutar. Aşağıda numpy ``np.random.randn(rows, cols)`` fonksiyonu ile (ortalama 0, varyans 1 normal dağılımdan) weight matrislerini initialize ediyoruz.
 
 .. literalinclude:: ../code/nn_matrix.py
     :language: python
     :pyobject: init_weights
 
-Here's an example calling ``random.randn()``:
+``random.randn()`` kullanım örneği:
 
 ::
 
@@ -80,86 +80,86 @@ Here's an example calling ``random.randn()``:
   print(arr.shape)
   >> (1,2)
 
-As you'll soon see, there are strict requirements on the dimensions of these weight matrices. The number of *rows* must equal the number of neurons in the previous layer. The number of *columns* must match the number of neurons in the next layer.
+Bu weight matrislerinin boyutları için katı şartlar vardır: *rows* (satır) sayısı önceki layer'daki neuron sayısına, *columns* (sütun) sayısı sonraki layer'daki neuron sayısına eşit olmalıdır.
 
-A good explanation of random weight initalization can be found in the Stanford CS231 course notes [1]_ chapter on neural networks.
+Random weight initialization üzerine iyi bir açıklama Stanford CS231 ders notlarında neural networks bölümünde bulunabilir [1]_.
 
 
-Bias Terms
+Bias Terms (Bias Terimleri)
 ----------
 
-:ref:`nn_bias` terms allow us to shift our neuron's activation outputs left and right. This helps us model datasets that do not necessarily pass through the origin.
+:ref:`nn_bias` terimleri neuron activation output'larını sağa veya sola kaydırmamızı sağlar; bu, orijinden geçmeyen veri dağılımlarını modellemeye yardımcı olur.
 
-Using the numpy method ``np.full()`` below, we create two 1-dimensional bias arrays filled with the default value ``0.2``. The first argument to ``np.full`` is a tuple of array dimensions. The second is the default value for cells in the array.
+Aşağıda numpy ``np.full()`` ile varsayılan değer ``0.2`` içeren iki adet 1‑boyutlu bias array oluşturuyoruz. İlk argüman boyut tuple'ı, ikinci argüman her hücre için default value.
 
 .. literalinclude:: ../code/nn_matrix.py
     :language: python
     :pyobject: init_bias
 
 
-Working with Matrices
+Working with Matrices (Matrislerle Çalışma)
 ---------------------
 
-To take advantage of fast linear algebra techniques and GPUs, we need to store our inputs, weights, and biases in matrices. Here is our neural network diagram again with its underlying matrix representation.
+Hızlı linear algebra teknikleri ve GPU avantajı için input, weight ve bias'ları matrislerde saklarız. Aşağıda ağ diyagramı matrix representation (temel matris gösterimi) ile tekrar verilmiştir.
 
 .. image:: images/nn_with_matrices_displayed.png
     :align: center
 
-What's happening here? To better understand, let's walk through each of the matrices in the diagram with an emphasis on their dimensions and why the dimensions are what they are. The matrix dimensions above flow naturally from the architecture of our network and the number of samples in our training set.
+Burada ne oluyor? Daha iyi anlamak için diyagramdaki her matrisi boyutlarına (dimensions) ve neden bu boyutlara sahip olduklarına odaklanarak inceleyelim. Boyutlar ağ mimarisi ve training set örnek sayısından doğal olarak türetilir.
 
-.. rubric:: Matrix dimensions
+.. rubric:: Matrix Dimensions (Matris Boyutları)
 
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Var** | **Name**              | **Dimensions** | **Explanation**                                                                                                                                                                                                                                                                                                                                                                            |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``X``   | Input                 | (3, 1)         | Includes 3 rows of training data, and each row has 1 attribute (height, price, etc.)                                                                                                                                                                                                                                                                                                       |
+| ``X``   | Input (Girdi)         | (3, 1)         | 3 satır (örnek) ve her satırda 1 attribute (özellik) (ör: height, price).                                                                                                                                                                                                                                                                                                                  |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``Wh``  | Hidden weights        | (1, 2)         | These dimensions are based on number of rows equals the number of attributes for the observations in our training set. The number columns equals the number of neurons in the hidden layer. The dimensions of the weights matrix between two layers is determined by the sizes of the two layers it connects. There is one weight for every input-to-neuron connection between the layers. |
+| ``Wh``  | Hidden weights        | (1, 2)         | Satır sayısı önceki layer attribute sayısı; sütun sayısı hidden layer neuron sayısı. İki layer arasındaki weight matrisi boyutu bağladığı layer boyutlarınca belirlenir. Her input→neuron bağlantısı için bir weight. |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``Bh``  | Hidden bias           | (1, 2)         | Each neuron in the hidden layer has is own bias constant. This bias matrix is added to the weighted input matrix before the hidden layer applies ReLU.                                                                                                                                                                                                                                     |
+| ``Bh``  | Hidden bias           | (1, 2)         | Hidden layer'daki her neuron için bir bias. ReLU uygulanmadan önce weighted input (Zh) üzerine eklenir. |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``Zh``  | Hidden weighted input | (1, 2)         | Computed by taking the dot product of X and Wh. The dimensions (1,2) are required by the rules of matrix multiplication. Zh takes the rows of in the inputs matrix and the columns of weights matrix. We then add the hidden layer bias matrix Bh.                                                                                                                                         |
+| ``Zh``  | Hidden weighted input | (1, 2)         | X · Wh dot product'ı ile elde edilir; ardından Bh eklenir. Boyutlar matris çarpım kurallarından gelir. |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``H``   | Hidden activations    | (3, 2)         | Computed by applying the Relu function to Zh. The dimensions are (3,2) — the number of rows matches the number of training samples and the number of columns equals the number of neurons. Each column holds all the activations for a specific neuron.                                                                                                                                    |
+| ``H``   | Hidden activations    | (3, 2)         | Zh üzerine ReLU uygulanır. Satırlar örnek sayısı (3), sütunlar neuron sayısı (2). Her sütun ilgili neuron aktivasyonlarını içerir. |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``Wo``  | Output weights        | (2, 2)         | The number of rows matches the number of hidden layer neurons and the number of columns equals the number of output layer neurons. There is one weight for every hidden-neuron-to-output-neuron connection between the layers.                                                                                                                                                             |
+| ``Wo``  | Output weights        | (2, 2)         | Satırlar hidden layer neuron sayısı, sütunlar output layer neuron sayısı. Her bağlantı için bir weight. |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``Bo``  | Output bias           | (1, 2)         | There is one column for every neuron in the output layer.                                                                                                                                                                                                                                                                                                                                  |
+| ``Bo``  | Output bias           | (1, 2)         | Output layer'daki her neuron için bir bias değeri (sütun). |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``Zo``  | Output weighted input | (3, 2)         | Computed by taking the dot product of H and Wo and then adding the output layer bias Bo. The dimensions are (3,2) representing the rows of in the hidden layer matrix and the columns of output layer weights matrix.                                                                                                                                                                      |
+| ``Zo``  | Output weighted input | (3, 2)         | H · Wo + Bo ile hesaplanır. Satırlar örnek, sütunlar output neuron. |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``O``   | Output activations    | (3, 2)         | Each row represents a prediction for a single observation in our training set. Each column is a unique attribute we want to predict. Examples of two-column output predictions could be a company's sales and units sold, or a person's height and weight.                                                                                                                                 |
+| ``O``   | Output activations    | (3, 2)         | Her satır bir örnek için prediction; her sütun farklı bir output attribute (ör: satış ve adet, boy ve kilo). |
 +---------+-----------------------+----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-Dynamic Resizing
+Dynamic Resizing (Dinamik Boyutlanma)
 ----------------
 
-Before we continue I want to point out how the matrix dimensions change with changes to the network architecture or size of the training set. For example, let’s build a network with 2 input neurons, 3 hidden neurons, 2 output neurons, and 4 observations in our training set.
+Devam etmeden önce network architecture veya training set boyutu değiştiğinde matris boyutlarının nasıl değiştiğine bakalım. Örneğin 2 input neuron, 3 hidden neuron, 2 output neuron ve 4 observation içeren bir ağ kuralım.
 
 .. image:: images/dynamic_resizing_neural_network_4_obs.png
     :align: center
 
-Now let's use same number of layers and neurons but reduce the number of observations in our dataset to **1 instance**:
+Aynı layer / neuron sayılarını koruyup observation sayısını **1**'e düşürelim:
 
 .. image:: images/dynamic_resizing_neural_network_1_obs.png
     :align: center
 
-As you can see, the number of columns in all matrices remains the same. The only thing that changes is the number of rows the layer matrices, which fluctuate with the size of the training set. The dimensions of the weight matrices remain unchanged. This shows us we can use the same network, the same lines of code, to process any number of observations.
+Görüldüğü üzere sütun sayıları sabit kalır; değişen sadece satır sayısıdır ve o da training set boyutuna bağlıdır. Weight matrix boyutları değişmez. Böylece aynı kod ile değişken sayıda observation işleyebiliriz.
 
 
-Refactoring Our Code
---------------------
+Refactoring Our Code (Kodu Yeniden Düzenleme)
+---------------------
 
-Here is our new feed forward code which accepts matrices instead of scalar inputs.
+Artık scalar yerine matrix kabul eden yeni feed forward kodu:
 
 .. literalinclude:: ../code/nn_matrix.py
     :language: python
     :pyobject: feed_forward
 
-.. rubric:: Weighted input
+.. rubric:: Weighted Input (Ağırlıklı Giriş)
 
-The first change is to update our weighted input calculation to handle matrices. Using dot product, we multiply the input matrix by the weights connecting them to the neurons in the next layer. Next we add the bias vector using matrix addition.
+İlk değişiklik weighted input hesabının matrislere uyarlanmasıdır. Dot product ile input matrix, bir sonraki layer neuron'larına giden weight matrisiyle çarpılır. Sonra bias vector eklenir (matrix addition).
 
 ::
 
@@ -168,25 +168,25 @@ The first change is to update our weighted input calculation to handle matrices.
 .. image:: images/neural_network_matrix_weighted_input.png
     :align: center
 
-The first column in ``Bh`` is added to all the rows in the first column of resulting dot product of ``X`` and ``Wh``. The second value in ``Bh`` is added to all the elements in the second column. The result is a new matrix, ``Zh`` which has a column for every neuron in the hidden layer and a row for every observation in our dataset. Given all the layers in our network are *fully-connected*, there is one weight for every neuron-to-neuron connection between the layers.
+``Bh``'nin ilk değeri X·Wh sonucunun ilk sütunundaki tüm satırlara, ikinci değeri ikinci sütundaki tüm elemanlara eklenir. Sonuç ``Zh`` matrisidir; her sütun bir hidden neuron, her satır bir observation. Ağ *fully-connected* olduğundan her neuron→neuron bağlantısı için bir weight vardır.
 
-The same process is repeated for the output layer, except the input is now the hidden layer activation ``H`` and the weights ``Wo``.
+Aynı süreç output layer için tekrarlanır; input artık ``H`` ve weights ``Wo``.
 
-.. rubric:: ReLU activation
+.. rubric:: ReLU Activation
 
-The second change is to refactor ReLU to use elementwise multiplication on matrices. It's only a small change, but its necessary if we want to work with matrices. ``np.maximum()`` is actually extensible and can handle both scalar and array inputs.
+İkinci değişiklik ReLU'nun matris üzerinde elementwise uygulanmasıdır. Küçük ama gerekli bir adım. ``np.maximum()`` hem scalar hem array ile çalışabildiği için uygundur.
 
 .. literalinclude:: ../code/nn_matrix.py
     :language: python
     :pyobject: relu
 
-In the hidden layer activation step, we apply the ReLU activation function ``np.maximum(0,Z)`` to every cell in the new matrix. The result is a matrix where all negative values have been replaced by 0. The same process is repeated for the output layer, except the input is ``Zo``.
+Hidden layer activation adımında ``np.maximum(0, Z)`` ile tüm negatif değerleri 0 yaparız. Aynısı output layer için ``Zo`` üzerinde tekrarlanır.
 
 
-Final Result
+Final Result (Nihai Sonuç)
 ------------
 
-Putting it all together we have the following code for forward propagation with matrices.
+Tüm parçaları birleştirince matrislerle forward propagation kodu aşağıdaki gibidir.
 
 .. literalinclude:: ../code/nn_matrix.py
     :language: python

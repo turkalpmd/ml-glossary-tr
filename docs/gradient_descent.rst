@@ -1,51 +1,51 @@
 .. _gradient_descent:
 
-================
-Gradient Descent
-================
+============================
+Gradient Descent (Gradyan İnişi)
+============================
 
-Gradient descent is an optimization algorithm used to minimize some function by iteratively moving in the direction of steepest descent as defined by the negative of the gradient. In machine learning, we use gradient descent to update the :ref:`parameters <glossary_parameters>` of our model. Parameters refer to coefficients in :doc:`linear_regression` and :ref:`weights <nn_weights>` in neural networks.
+Gradient Descent bir optimization algorithm olup bir fonksiyonu minimize etmek için her iterasyonda negatif gradient (en dik iniş) yönünde küçük adımlar atar. Machine learning bağlamında model :ref:`parameters <glossary_parameters>` (ör: :doc:`linear_regression` katsayıları, neural network :ref:`weights <nn_weights>`) değerlerini güncellemek için kullanılır.
 
 
-Introduction
+Introduction (Giriş)
 ============
 
-Consider the 3-dimensional graph below in the context of a cost function. Our goal is to move from the mountain in the top right corner (high cost) to the dark blue sea in the bottom left (low cost). The arrows represent the direction of steepest descent (negative gradient) from any given point--the direction that decreases the cost function as quickly as possible. `Source <http://www.adalta.it/Pages/-GoldenSoftware-Surfer-010.asp>`_
+Alttaki 3‑boyutlu grafiği bir cost function yüzeyi olarak düşünün. Amacımız sağ üstteki dağ (yüksek cost) noktasından sol alttaki koyu mavi deniz (düşük cost) bölgesine inmektir. Oklar herhangi bir noktadan en hızlı azalış yönünü (negative gradient, steepest descent) gösterir; yani cost'u en hızlı düşüren yön. `Source <http://www.adalta.it/Pages/-GoldenSoftware-Surfer-010.asp>`_
 
 .. image:: images/gradient_descent.png
     :align: center
 
-Starting at the top of the mountain, we take our first step downhill in the direction specified by the negative gradient. Next we recalculate the negative gradient (passing in the coordinates of our new point) and take another step in the direction it specifies. We continue this process iteratively until we get to the bottom of our graph, or to a point where we can no longer move downhill--a local minimum. `image source <https://youtu.be/5u0jaA3qAGk>`_.
+Dağın tepesinden başlar, negatif gradient yönünde ilk adımı atarız. Sonra yeni noktadaki gradient'i tekrar hesaplayıp yine ters yönde (negatif gradient) ilerleriz. Bu iterative süreç alt seviyeye (global minimum mümkünse) ya da daha fazla inemediğimiz bir local minimum noktasına kadar sürer. `image source <https://youtu.be/5u0jaA3qAGk>`_.
 
 .. image:: images/gradient_descent_demystified.png
     :align: center
 
-Learning rate
+Learning Rate (Öğrenme Oranı)
 =============
 
-The size of these steps is called the *learning rate*. With a high learning rate we can cover more ground each step, but we risk overshooting the lowest point since the slope of the hill is constantly changing. With a very low learning rate, we can confidently move in the direction of the negative gradient since we are recalculating it so frequently. A low learning rate is more precise, but calculating the gradient is time-consuming, so it will take us a very long time to get to the bottom.
+Bu adımların büyüklüğüne *learning rate* denir. Yüksek learning rate her adımda daha fazla mesafe kat ettirir ama minimumu overshoot etme (aşma) riskini artırır. Çok düşük learning rate ise daha hassas (precise) fakat yavaştır; gradient sık hesaplandığı için yön daha güvenilir olur ancak convergence süresi uzar.
 
 
-Cost function
+Cost Function (Maliyet Fonksiyonu)
 =============
 
-A :ref:`cost_function` tells us "how good" our model is at making predictions for a given set of parameters. The cost function has its own curve and its own gradients. The slope of this curve tells us how to update our parameters to make the model more accurate.
+:ref:`cost_function` modelimizin belirli parametreler altında hangi doğrulukla tahmin yaptığını ölçer. Bu fonksiyonun kendine ait bir yüzeyi (eğrisi) ve her noktada gradient'i vardır; eğimin yönü parametreleri hangi yönde güncellememiz gerektiğini söyler.
 
 
-Step-by-step
+Step-by-step (Adım Adım)
 ============
 
-Now let's run gradient descent using our new cost function. There are two parameters in our cost function we can control: :math:`m` (weight) and :math:`b` (bias). Since we need to consider the impact each one has on the final prediction, we need to use partial derivatives. We calculate the partial derivatives of the cost function with respect to each parameter and store the results in a gradient.
+Şimdi bu cost function için gradient descent çalıştıralım. Kontrol ettiğimiz iki parametre: :math:`m` (weight) ve :math:`b` (bias). Her birinin prediction üzerindeki etkisi olduğundan partial derivative kullanırız; cost function'ın :math:`m` ve :math:`b`'ye göre türevlerini hesaplayıp gradient vektöründe saklarız.
 
-.. rubric:: Math
+.. rubric:: Math (Matematik)
 
-Given the cost function:
+Cost function:
 
 .. math::
 
   f(m,b) =  \frac{1}{N} \sum_{i=1}^{N} (y_i - (mx_i + b))^2
 
-The gradient can be calculated as:
+Gradient hesaplanışı:
 
 .. math::
 
@@ -60,10 +60,10 @@ The gradient can be calculated as:
        \frac{1}{N} \sum -2(y_i - (mx_i + b)) \\
       \end{bmatrix}
 
-To solve for the gradient, we iterate through our data points using our new :math:`m` and :math:`b` values and compute the partial derivatives. This new gradient tells us the slope of our cost function at our current position (current parameter values) and the direction we should move to update our parameters. The size of our update is controlled by the learning rate.
+Gradient'i bulmak için veri noktaları üzerinden yeni :math:`m` ve :math:`b` ile geçip partial derivative toplamlarını hesaplarız. Elde edilen gradient mevcut parametre konumunda cost surface eğimini ve hangi yöne ilerlememiz gerektiğini gösterir; adım büyüklüğü learning rate ile ölçeklenir.
 
 
-.. rubric:: Code
+.. rubric:: Code (Kod)
 
 ::
 
@@ -86,6 +86,6 @@ To solve for the gradient, we iterate through our data points using our new :mat
       return m, b
 
 
-.. rubric:: References
+.. rubric:: References (Kaynaklar)
 
 .. [1] http://ruder.io/optimizing-gradient-descent

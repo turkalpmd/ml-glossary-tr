@@ -1,25 +1,25 @@
 .. _datasets:
 
 ========
-Datasets
+Datasets (Veri Kümeleri)
 ========
 
-Public datasets in vision, nlp and more forked from caesar0301's `awesome datasets <https://github.com/caesar0301/awesome-public-datasets>`_ wiki.
+Bilgisayarla görme (vision), doğal dil işleme (NLP) ve diğer alanlarda kamuya açık (public) veri kümeleri. Liste büyük ölçüde caesar0301'in `awesome datasets <https://github.com/caesar0301/awesome-public-datasets>`_ wiki deposundan çatallanmış (forked) kaynakları içerir.
 
 .. contents:: :local:
 
 
-Agriculture
+Agriculture (Tarım)
 ------------
 * `U.S. Department of Agriculture's PLANTS Database <http://www.plants.usda.gov/dl_all.html>`_
 * `U.S. Department of Agriculture's Nutrient Database <https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/>`_
 
 
-Art
+Art (Sanat)
 ---
 * `Google's Quick Draw Sketch Dataset <https://quickdraw.withgoogle.com/data>`_
 
-Biology
+Biology (Biyoloji)
 -------
 
 * `1000 Genomes <http://www.1000genomes.org/data>`_
@@ -66,7 +66,7 @@ Biology
 * `UniGene <http://www.ncbi.nlm.nih.gov/unigene>`_
 * `Universal Protein Resource (UnitProt) <http://www.uniprot.org/downloads>`_
 
-Chemistry/Materials Science
+Chemistry/Materials Science (Kimya / Malzeme Bilimi)
 ---------------------------
 
 * `NIST Computational Chemistry Comparison and Benchmark Database - SRD 101 <https://catalog.data.gov/dataset/nist-computational-chemistry-comparison-and-benchmark-database-srd-101>`_
@@ -74,7 +74,7 @@ Chemistry/Materials Science
 * `Citrination Public Datasets <https://citrination.com/datasets#public>`_
 * `Khazana Project <https://khazana.gatech.edu/module_search/search.php?m=2>`_
 
-Climate/Weather
+Climate/Weather (İklim / Hava Durumu)
 ---------------
 
 * `Actuaries Climate Index <http://actuariesclimateindex.org/data/>`_
@@ -96,8 +96,8 @@ Climate/Weather
 * `WU Historical Weather Worldwide <https://www.wunderground.com/history/index.html>`_
 
 
-Complex Networks
-----------------
+Complex Networks (Karmaşık Ağlar)
+-----------------
 
 * `AMiner Citation Network Dataset <http://aminer.org/citation>`_
 * `CrossRef DOI URLs <https://archive.org/details/doi-urls>`_
@@ -121,7 +121,7 @@ Complex Networks
 * `WSU Graph Database <http://www.eecs.wsu.edu/mgd/gdb.html>`_
 
 
-Computer Networks
+Computer Networks (Bilgisayar Ağları)
 -----------------
 
 * `3.5B Web Pages from CommonCrawl 2012 <http://www.bigdatanews.com/profiles/blogs/big-data-set-3-5-billion-web-pages-made-available-for-all-of-us>`_
@@ -138,7 +138,7 @@ Computer Networks
 * `UCSD Network Telescope, IPv4 /8 net <http://www.caida.org/projects/network_telescope/>`_
 
 
-Data Challenges
+Data Challenges (Veri Yarışmaları / Zorlukları)
 ---------------
 
 * `Bruteforce Database <https://github.com/duyetdev/bruteforce-database>`_
@@ -157,7 +157,7 @@ Data Challenges
 * `Yelp Dataset Challenge <http://www.yelp.com/dataset_challenge>`_
 
 
-Earth Science
+Earth Science (Yer / Dünya Bilimleri)
 -------------
 
 * `AQUASTAT - Global water resources and uses <http://www.fao.org/nr/water/aquastat/data/query/index.html?lang=en>`_
@@ -170,7 +170,7 @@ Earth Science
 * `USGS Earthquake Archives <http://earthquake.usgs.gov/earthquakes/search/>`_
 
 
-Economics
+Economics (İktisat / Ekonomi)
 ---------
 
 * `American Economic Association (AEA) <https://www.aeaweb.org/resources/data>`_
@@ -192,14 +192,14 @@ Economics
 * `UN Human Development Reports <http://hdr.undp.org/en>`_
 
 
-Education
+Education (Eğitim)
 ------------
 
 * `College Scorecard Data <https://collegescorecard.ed.gov/data/>`_
 * `Student Data from Free Code Camp <http://academictorrents.com/details/030b10dad0846b5aecc3905692890fb02404adbf>`_
 
 
-Energy
+Energy (Enerji)
 ------
 
 * `AMPds <http://ampds.org/>`_
@@ -219,7 +219,7 @@ Energy
 * `WHITED <http://nilmworkshop.org/2016/proceedings/Poster_ID18.pdf>`_
 
 
-Finance
+Finance (Finans)
 -------
 
 * `CBOE Futures Exchange <http://cfe.cboe.com/Data/>`_
@@ -234,7 +234,7 @@ Finance
 * `Yahoo Finance <http://finance.yahoo.com/>`_
 
 
-GIS
+GIS (Coğrafi Bilgi Sistemleri)
 ---
 
 * `ArcGIS Open Data portal <http://opendata.arcgis.com/>`_
@@ -262,7 +262,7 @@ GIS
 * `World countries in multiple formats <https://github.com/mledoze/countries>`_
 
 
-Government
+Government (Kamu / Devlet)
 ----------
 
 * `A list of cities and countries contributed by community <https://github.com/caesar0301/awesome-public-datasets/blob/master/Government.rst>`_
@@ -270,7 +270,7 @@ Government
 * `OpenDataSoft's list of 1,600 open data <https://www.opendatasoft.com/a-comprehensive-list-of-all-open-data-portals-around-the-world/>`_
 
 
-Healthcare
+Healthcare (Sağlık)
 ----------
 
 * `EHDP Large Health Data Sets <http://www.ehdp.com/vitalnet/datasets.htm>`_
@@ -286,8 +286,8 @@ Healthcare
 * `World Health Organization Global Health Observatory <http://www.who.int/gho/en/>`_
 
 
-Image Processing
-----------------
+Image Processing (Görüntü İşleme)
+-----------------
 
 * `10k US Adult Faces Database <http://wilmabainbridge.com/facememorability2.html>`_
 * `2GB of Photos of Cats <http://137.189.35.203/WebUI/CatDatabase/catData.html>`_ or `Archive version <https://web.archive.org/web/20150520175645/http://137.189.35.203/WebUI/CatDatabase/catData.html>`_
@@ -313,8 +313,8 @@ Image Processing
 * `YouTube Faces Database <http://www.cs.tau.ac.il/~wolf/ytfaces/>`_
 
 
-Machine Learning
-----------------
+Machine Learning (Makine Öğrenmesi)
+-----------------
 
 * `Context-aware data sets from five domains <https://github.com/irecsys/CARSKit/tree/master/context-aware_data_sets>`_
 * `Delve Datasets for classification and regression (Univ. of Toronto) <http://www.cs.toronto.edu/~delve/data/datasets.html>`_
@@ -337,7 +337,7 @@ Machine Learning
 * `Youtube 8m <https://research.google.com/youtube8m/download.html>`_
 
 
-Museums
+Museums (Müzeler)
 -------
 
 * `Canada Science and Technology Museums Corporation's Open Data <http://techno-science.ca/en/data.php>`_
@@ -348,14 +348,14 @@ Museums
 * `Tate Collection metadata <https://github.com/tategallery/collection>`_
 * `The Getty vocabularies <http://vocab.getty.edu>`_
 
-Music
+Music (Müzik)
 -----
 
 * `Nottingham Folk Songs <https://github.com/jukedeck/nottingham-dataset>`_
 * `Bach 10 <http://music.cs.northwestern.edu/data/Bach10_Dataset_Description.pdf>`_
 
-Natural Language
-----------------
+Natural Language (Doğal Dil)
+-----------------
 
 * `Automatic Keyphrase Extracttion <https://github.com/snkim/AutomaticKeyphraseExtraction/>`_
 * `Blogger Corpus <http://u.cs.biu.ac.il/~koppel/BlogCorpus.htm>`_
@@ -386,7 +386,7 @@ Natural Language
 * `WordNet databases and tools <http://wordnet.princeton.edu/wordnet/download/>`_
 
 
-Neuroscience
+Neuroscience (Nörobilim)
 -------------
 
 * `Allen Institute Datasets <http://www.brain-map.org/>`_
@@ -405,7 +405,7 @@ Neuroscience
 * `Study Forrest <http://studyforrest.org>`_
 
 
-Physics
+Physics (Fizik)
 -------
 
 * `CERN Open Data Portal <http://opendata.cern.ch/>`_
@@ -415,13 +415,13 @@ Physics
 * `Sloan Digital Sky Survey (SDSS) - Mapping the Universe <http://www.sdss.org/>`_
 
 
-Psychology/Cognition
+Psychology/Cognition (Psikoloji / Biliş)
 --------------------
 
 * `OSU Cognitive Modeling Repository Datasets <http://www.cmr.osu.edu/browse/datasets>`_
 
 
-Public Domains
+Public Domains (Genel/Erişime Açık Alanlar)
 --------------
 
 * `Amazon <http://aws.amazon.com/datasets/>`_
@@ -451,7 +451,7 @@ Public Domains
 * `Yahoo Webscope <http://webscope.sandbox.yahoo.com/catalog.php>`_
 
 
-Search Engines
+Search Engines (Arama Motorları)
 --------------
 
 * `Academic Torrents of data sharing from UMB <http://academictorrents.com/>`_
@@ -467,7 +467,7 @@ Search Engines
 * `Zenodo - An open dependable home for the long-tail of science <https://zenodo.org/collection/datasets>`_
 
 
-Social Networks
+Social Networks (Sosyal Ağlar)
 ---------------
 
 * `72 hours #gamergate Twitter Scrape <http://waxy.org/random/misc/gamergate_tweets.csv>`_
@@ -496,7 +496,7 @@ Social Networks
 * `Youtube Video Social Graph in 2007,2008 <http://netsg.cs.sfu.ca/youtubedata/>`_
 
 
-Social Sciences
+Social Sciences (Sosyal Bilimler)
 ---------------
 
 * `ACLED (Armed Conflict Location & Event Data Project) <http://www.acleddata.com/>`_
@@ -542,12 +542,12 @@ Social Sciences
 * `WorldPop project - Worldwide human population distributions <http://www.worldpop.org.uk/data/get_data/>`_
 
 
-Software
+Software (Yazılım)
 --------
 
 * `FLOSSmole data about free, libre, and open source software development <http://flossdata.syr.edu/data/>`_
 
-Sports
+Sports (Spor)
 ------
 
 * `Basketball (NBA/NCAA/Euro) Player Database and Statistics <http://www.draftexpress.com/stats.php>`_
@@ -561,7 +561,7 @@ Sports
 * `Tennis database of rankings, results, and stats for ATP <https://github.com/JeffSackmann/tennis_atp>`_, `WTA <https://github.com/JeffSackmann/tennis_wta>`_, `Grand Slams <https://github.com/JeffSackmann/tennis_slam_pointbypoint>`_ and `Match Charting Project <https://github.com/JeffSackmann/tennis_MatchChartingProject>`_
 
 
-Time Series
+Time Series (Zaman Serileri)
 -----------
 
 * `Databanks International Cross National Time Series Data Archive <http://www.cntsdata.com>`_
@@ -571,7 +571,7 @@ Time Series
 * `UC Riverside Time Series Dataset <http://www.cs.ucr.edu/~eamonn/time_series_data/>`_
 
 
-Transportation
+Transportation (Ulaşım / Taşımacılık)
 --------------
 
 * `Airlines OD Data 1987-2008 <http://stat-computing.org/dataexpo/2009/the-data.html>`_

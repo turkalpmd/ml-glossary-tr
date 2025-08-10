@@ -9,67 +9,67 @@ Calculus
 
 .. _introduction:
 
-Introduction
-============
+Introduction (Giriş)
+====================
 
-You need to know some basic calculus in order to understand how functions change over time (derivatives), and to calculate the total amount of a quantity that accumulates over a time period (integrals). The language of calculus will allow you to speak precisely about the properties of functions and better understand their behaviour.
+Fonksiyonların zaman (ya da giriş) değişimine göre nasıl değiştiğini anlamak için temel düzeyde Calculus (türev - derivative) bilmek ve belirli bir aralık boyunca birikmiş toplam miktarı hesaplamak için integral (integral) kavramını bilmek gerekir. Calculus dili, fonksiyonların özelliklerini (properties) kesin biçimde ifade etmenizi ve davranışlarını daha iyi anlamanızı sağlar.
 
-Normally taking a calculus course involves doing lots of tedious calculations by hand, but having the power of computers on your side can make the process much more fun. This section describes the key ideas of calculus which you'll need to know to understand machine learning concepts.
+Klasik bir Calculus dersi genellikle elde uzun ve yorucu hesaplamalar yapmayı içerir; ancak bilgisayar gücü sayesinde süreç daha eğlenceli olabilir. Bu bölümde makine öğrenmesi (machine learning) kavramlarını anlamak için bilmeniz gereken temel Calculus fikirleri özetlenmiştir.
 
 
 .. _derivative:
 
-Derivatives
-===========
+Derivatives (Türevler)
+======================
 
-A derivative can be defined in two ways:
+Bir derivative (türev) iki şekilde tanımlanabilir:
 
-  #. Instantaneous rate of change (Physics)
-  #. Slope of a line at a specific point (Geometry)
+  #. Anlık değişim oranı (instantaneous rate of change – Physics/fiziksel yorum)
+  #. Bir doğrunun belirli bir noktadaki eğimi (slope at a point – Geometric/geometrik yorum)
 
-Both represent the same principle, but for our purposes it’s easier to explain using the geometric definition.
+Her ikisi aynı prensibi temsil eder; burada geometrik tanımı üzerinden ilerlemek daha sezgiseldir.
 
 
-Geometric definition
---------------------
+Geometric Definition (Geometrik Tanım)
+--------------------------------------
 
-In geometry slope represents the steepness of a line. It answers the question: how much does :math:`y` or :math:`f(x)` change given a specific change in :math:`x`?
+Geometride slope (eğim) bir doğrunun ne kadar dik olduğunu gösterir. Şu soruya cevap verir: :math:`x` belirli bir miktar değiştiğinde :math:`y` ya da :math:`f(x)` ne kadar değişir?
 
 .. image:: images/slope_formula.png
     :align: center
 
-Using this definition we can easily calculate the slope between two points. But what if I asked you, instead of the slope between two points, what is the slope at a single point on the line? In this case there isn’t any obvious "rise-over-run" to calculate. Derivatives help us answer this question.
+Bu tanım ile iki nokta arasındaki eğim kolayca hesaplanır. Peki iki nokta arasındaki eğim yerine, doğrunun tek bir noktasındaki eğim nedir dersek? Bu durumda doğrudan bir "rise-over-run" (yükselme/boyuna oran) ifadesi yok. İşte derivative bu soruyu yanıtlamamıza yardım eder.
 
-A derivative outputs an expression we can use to calculate the *instantaneous rate of change*, or slope, at a single point on a line. After solving for the derivative you can use it to calculate the slope at every other point on the line.
+Bir derivative, bir doğru üzerindeki tek bir noktada *instantaneous rate of change* (anlık değişim oranı) yani slope'u hesaplayabileceğimiz bir ifade verir. Türevi bulduktan sonra, doğrunun diğer tüm noktalarındaki eğimi de hesaplayabilirsiniz.
 
 
-Taking the derivative
----------------------
+Taking the Derivative (Türevi Alma)
+-----------------------------------
 
-Consider the graph below, where :math:`f(x) = x^2 + 3`.
+Aşağıdaki grafikte :math:`f(x) = x^2 + 3` olsun.
 
 .. image:: images/calculus_slope_intro.png
     :align: center
 
-The slope between (1,4) and (3,12) would be:
+ (1,4) ile (3,12) noktaları arasındaki slope (eğim) şöyle olur:
 
 .. math::
 
   slope = \frac{y2-y1}{x2-x1} = \frac{12-4}{3-1} = 4
 
-But how do we calculate the slope at point (1,4) to reveal the change in slope at that specific point?
+Peki (1,4) noktasındaki eğimi nasıl buluruz? Bu noktanın tam yerel eğimini (değişim oranını) nasıl ortaya çıkarırız?
 
-One way would be to find the two nearest points, calculate their slopes relative to :math:`x` and take the average. But calculus provides an easier, more precise way: compute the derivative. Computing the derivative of a function is essentially the same as our original proposal, but instead of finding the two closest points, we make up an imaginary point an infinitesimally small distance away from :math:`x` and compute the slope between :math:`x` and the new point.
+Bir yöntem en yakın iki noktayı bulup onların eğimlerinin ortalamasını almaktır. Ancak Calculus daha basit ve kesin bir yol sunar: derivative hesaplamak. Bu, iki nokta seçmemize benzer; fakat bu kez :math:`x`'e sonsuz küçük (infinitesimal) bir uzaklıkta hayali bir nokta alır ve aradaki slope'u hesaplarız.
 
-In this way, derivatives help us answer the question: how does :math:`f(x)` change if we make a very very tiny increase to x? In other words, derivatives help *estimate* the slope between two points that are an infinitesimally small distance away from each other. A very, very, very small distance, but large enough to calculate the slope.
+Bu sayede derivative şu soruyu cevaplar: :math:`x` değerini inanılmaz derecede küçük bir miktar artırırsak :math:`f(x)` nasıl değişir? Yani derivative, birbirine sonsuz küçük uzaklıkta olan iki nokta arasındaki slope'u *tahmin* etmemize yardım eder (yeterince küçük ama hesap yapabilecek kadar büyük bir fark düşünün).
 
-In math language we represent this infinitesimally small increase using a limit. A limit is defined as the output value a function approaches as the input value approaches another value. In our case the target value is the specific point at which we want to calculate slope.
+Matematiksel olarak bu sonsuz küçük artışı bir limit ile ifade ederiz. Limit, giriş (input) belirli bir değere yaklaşırken fonksiyon çıktısının yaklaştığı değerdir. Burada hedef değer, slope'unu istediğimiz özel noktadır.
 
 
-Step-by-step
-------------
+Step-by-step (Adım Adım)
+------------------------
 
-Calculating the derivative is the same as calculating normal slope, however in this case we calculate the slope between our point and a point infinitesimally close to it. We use the variable :math:`h` to represent this infinitesimally distance. Here are the steps:
+Bir derivative hesaplamak normal slope hesaplamaya benzer; fark, noktamız ile ona sonsuz küçük uzaklıktaki başka nokta arasındaki slope'u almamızdır. Bu infinitesimal mesafeyi :math:`h` ile gösteririz. Adımlar:
 
 1. Given the function:
 
@@ -77,19 +77,19 @@ Calculating the derivative is the same as calculating normal slope, however in t
 
   f(x) = x^2
 
-2. Increment :math:`x` by a very small value :math:`h (h = Δx)`
+2. :math:`x`'i çok küçük bir :math:`h` kadar artır (:math:`h = Δx`)
 
 .. math::
 
   f(x + h) = (x + h)^2
 
-3. Apply the slope formula
+3. Slope formülünü uygula
 
 .. math::
 
   \frac{f(x + h) - f(x)}{h}
 
-4. Simplify the equation
+4. Denklemi sadeleştir
 
 .. math::
 
@@ -97,13 +97,13 @@ Calculating the derivative is the same as calculating normal slope, however in t
 
   \frac{2xh+h^2}{h} = 2x+h
 
-5. Set :math:`h` to 0 (the limit as :math:`h` heads toward 0)
+5. :math:`h`'yi 0'a götür (limit, :math:`h -> 0`)
 
 .. math::
 
   {2x + 0} = {2x}
 
-So what does this mean? It means for the function :math:`f(x) = x^2`, the slope at any point equals :math:`2x`. The formula is defined as:
+Bu ne anlama gelir? :math:`f(x) = x^2` fonksiyonu için herhangi bir noktadaki slope'un :math:`2x` olduğunu gösterir. Genel formül:
 
 .. math::
 
@@ -113,7 +113,7 @@ So what does this mean? It means for the function :math:`f(x) = x^2`, the slope 
 .. rubric:: Code
 
 
-Let's write code to calculate the derivative of any function :math:`f(x)`. We test our function works as expected on the input :math:`f(x)=x^2` producing a value close to the actual derivative :math:`2x`.
+Herhangi bir :math:`f(x)` fonksiyonunun derivative'ını sayısal olarak hesaplayan bir kod yazalım. :math:`f(x)=x^2` için test edip gerçek türev :math:`2x`'e yakın değer üretmesini bekliyoruz.
 
 ::
 
@@ -130,49 +130,49 @@ Let's write code to calculate the derivative of any function :math:`f(x)`. We te
   computed, actual   # = 6.0001, 6        # pretty close if you ask me...
 
 
-In general it's preferable to use the math to obtain exact `derivative formulas <https://www.teachoo.com/9722/1227/Differentiation-Formulas/category/Finding-derivative-of-a-function-by-chain-rule/>`_, but keep in mind you can always compute derivatives numerically by computing the rise-over-run for a "small step" :math:`h`. 
+Genel olarak tam (closed-form) `derivative formulas <https://www.teachoo.com/9722/1227/Differentiation-Formulas/category/Finding-derivative-of-a-function-by-chain-rule/>`_ kullanmak tercih edilir; ancak küçük bir adım :math:`h` için rise-over-run hesaplayarak sayısal (numerical) türev alabileceğinizi unutmayın.
 
 
-Machine learning use cases
---------------------------
+Machine Learning Use Cases (Kullanım Alanları)
+----------------------------------------------
 
-Machine learning uses derivatives in optimization problems. Optimization algorithms like *gradient descent* use derivatives to decide whether to increase or decrease weights in order to maximize or minimize some objective (e.g. a model's accuracy or error functions). Derivatives also help us approximate nonlinear functions as linear functions (tangent lines), which have constant slopes. With a constant slope we can decide whether to move up or down the slope (increase or decrease our weights) to get closer to the target value (class label).
+Machine learning optimizasyon (optimization) problemlerinde derivative kullanır. *Gradient descent* gibi algoritmalar bir objective (hedef) fonksiyonu (ör. accuracy ya da error) minimize/maksimize etmek için weight'lerin artırılıp azaltılacağını derivative (gradient) bilgisiyle belirler. Türev ayrıca eğrinin tangent line (teğet) yaklaşımıyla doğrusal (linear) olarak yaklaştırılmasını sağlar; doğrusal fonksiyonların slope'u sabittir. Sabit slope ile hedef değere (class label) yaklaşmak için hangi yönde (aşağı / yukarı) ilerleyeceğimize karar verebiliriz.
 
 
 
 .. _chain_rule:
 
-Chain rule
-==========
+Chain Rule (Zincir Kuralı)
+==========================
 
-The chain rule is a formula for calculating the derivatives of composite functions. Composite functions are functions composed of functions inside other function(s).
+Chain rule, composite functions (bileşik fonksiyonlar) için türev hesaplama formülüdür. Composite function: başka fonksiyon(lar) içinde tanımlı fonksiyon.
 
-How It Works
-------------
+How It Works (Nasıl Çalışır)
+----------------------------
 
-Given a composite function :math:`f(x) = A(B(x))`, the derivative of :math:`f(x)` equals the product of the derivative of :math:`A` with respect to :math:`B(x)` and the derivative of :math:`B` with respect to :math:`x`.
+Bir composite function :math:`f(x) = A(B(x))` verildiğinde, :math:`f(x)`'in türevi :math:`A`'nın :math:`B(x)`'e göre türevi ile :math:`B`'nin :math:`x`'e göre türevinin çarpımıdır.
 
 .. math::
 
   \mbox{composite function derivative} = \mbox{outer function derivative} * \mbox{inner function derivative}
 
-For example, given a composite function :math:`f(x)`, where:
+Örneğin aşağıdaki gibi bir composite function :math:`f(x)` verilsin:
 
 .. math::
 
   f(x) = h(g(x))
 
-The chain rule tells us that the derivative of :math:`f(x)` equals:
+Chain rule'a göre :math:`f(x)`'in türevi:
 
 .. math::
 
   \frac{df}{dx} = \frac{dh}{dg} \cdot \frac{dg}{dx}
 
 
-Step-by-step
-------------
+Step-by-step (Adım Adım)
+------------------------
 
-Say :math:`f(x)` is composed of two functions :math:`h(x) = x^3` and :math:`g(x) = x^2`. And that:
+Varsayalım :math:`f(x)` iki fonksiyondan oluşuyor: :math:`h(x) = x^3` ve :math:`g(x) = x^2`. O halde:
 
 .. math::
 
@@ -181,7 +181,7 @@ Say :math:`f(x)` is composed of two functions :math:`h(x) = x^3` and :math:`g(x)
        &= (x^2)^3 \\
   \end{align}
 
-The derivative of :math:`f(x)` would equal:
+:math:`f(x)`'in türevi:
 
 .. math::
 
@@ -191,21 +191,21 @@ The derivative of :math:`f(x)` would equal:
   \end{align}
 
 
-.. rubric:: Steps
+.. rubric:: Steps (Adımlar)
 
-1. Solve for the inner derivative of :math:`g(x) = x^2`
+1. İç fonksiyonun (inner) türevini hesapla :math:`g(x) = x^2`
 
 .. math::
 
   \frac{dg}{dx} = 2x
 
-2. Solve for the outer derivative of :math:`h(x) = x^3`, using a placeholder :math:`b` to represent the inner function :math:`x^2`
+2. Dış fonksiyonun (outer) türevini hesapla :math:`h(x)=x^3`; iç fonksiyonu :math:`x^2` bir placeholder :math:`b` ile göster.
 
 .. math::
 
   \frac{dh}{db} = 3b^2
 
-3. Swap out the placeholder variable (b) for the inner function (g(x))
+3. Placeholder :math:`b` yerine inner function :math:`g(x)` koy.
 
 .. math::
   \begin{gathered}
@@ -213,39 +213,39 @@ The derivative of :math:`f(x)` would equal:
   3x^4
   \end{gathered}
 
-4. Return the product of the two derivatives
+4. İki türevin çarpımını al
 
 .. math::
 
   3x^4 \cdot 2x = 6x^5
 
 
-Multiple functions
-------------------
+Multiple Functions (Birden Fazla İç Fonksiyon)
+----------------------------------------------
 
-In the above example we assumed a composite function containing a single inner function. But the chain rule can also be applied to higher-order functions like:
+Yukarıdaki örnekte tek iç fonksiyonlu bir composite function varsaydık. Chain rule daha derin iç içe fonksiyonlar için de uygulanabilir:
 
 .. math::
 
   f(x) = A(B(C(x)))
 
-The chain rule tells us that the derivative of this function equals:
+Chain rule'a göre türev:
 
 .. math::
 
   \frac{df}{dx} = \frac{dA}{dB} \frac{dB}{dC} \frac{dC}{dx}
 
-We can also write this derivative equation :math:`f'` notation:
+Bu türev :math:`f'` gösterimiyle de yazılabilir:
 
 .. math::
 
   f' = A'(B(C(x)) \cdot B'(C(x)) \cdot C'(x)
 
 
-.. rubric:: Steps
+.. rubric:: Steps (Adımlar)
 
 
-Given the function :math:`f(x) = A(B(C(x)))`, lets assume:
+:math:`f(x) = A(B(C(x)))` fonksiyonu için şunları varsayalım:
 
 .. math::
 
@@ -255,7 +255,7 @@ Given the function :math:`f(x) = A(B(C(x)))`, lets assume:
   C(x) & = 4x
   \end{align}
 
-The derivatives of these functions would be:
+Bu fonksiyonların türevleri:
 
 .. math::
 
@@ -265,13 +265,13 @@ The derivatives of these functions would be:
   C'(x) &= 4
   \end{align}
 
-We can calculate the derivative of :math:`f(x)` using the following formula:
+:math:`f(x)`'in türevini şu formülle hesaplarız:
 
 .. math::
 
   f'(x) = A'( (4x)^2) \cdot B'(4x) \cdot C'(x)
 
-We then input the derivatives and simplify the expression:
+Türevleri yerine koyup ifadeyi sadeleştiririz:
 
 .. math::
 
@@ -287,22 +287,22 @@ We then input the derivatives and simplify the expression:
 
 .. _gradient:
 
-Gradients
-=========
+Gradients (Gradyanlar)
+======================
 
-A gradient is a vector that stores the partial derivatives of multivariable functions. It helps us calculate the slope at a specific point on a curve for functions with multiple independent variables. In order to calculate this more complex slope, we need to isolate each variable to determine how it impacts the output on its own. To do this we iterate through each of the variables and calculate the derivative of the function after holding all other variables constant. Each iteration produces a partial derivative which we store in the gradient.
-
-
-Partial derivatives
--------------------
-
-In functions with 2 or more variables, the partial derivative is the derivative of one variable with respect to the others. If we change :math:`x`, but hold all other variables constant, how does :math:`f(x,z)` change? That's one partial derivative. The next variable is :math:`z`. If we change :math:`z` but hold :math:`x` constant, how does :math:`f(x,z)` change? We store partial derivatives in a gradient, which represents the full derivative of the multivariable function.
+Bir gradient (gradyan) çok değişkenli (multivariable) fonksiyonların partial derivative (kısmi türev) değerlerini tutan bir vektördür. Birden fazla bağımsız değişkeni olan fonksiyonlarda belirli bir noktadaki slope'u hesaplamaya yardım eder. Daha karmaşık bu slope'u hesaplamak için her değişkeni tek tek izole eder, diğerlerini sabit tutarken fonksiyonun türevini alırız. Her iterasyonda bir partial derivative elde eder ve gradient vektörüne yerleştiririz.
 
 
-Step-by-step
-------------
+Partial Derivatives (Kısmi Türevler)
+------------------------------------
 
-Here are the steps to calculate the gradient for a multivariable function:
+İki veya daha fazla değişkenli fonksiyonlarda partial derivative, bir değişkenin diğerleri sabitken aldığı türevdir. :math:`x`'i değiştirip diğerlerini sabit tutarsak :math:`f(x,z)` nasıl değişir? Bu bir partial derivative'dır. Sonra :math:`z` için aynı işlemi yaparız. Kısmi türevleri gradient vektöründe saklarız; bu vektör çok değişkenli fonksiyonun toplam türevi hakkında bilgi verir.
+
+
+Step-by-step (Adım Adım)
+------------------------
+
+Çok değişkenli (multivariable) bir fonksiyonun gradient'ini hesaplama adımları:
 
 1. Given a multivariable function
 
@@ -316,13 +316,13 @@ Here are the steps to calculate the gradient for a multivariable function:
 
   \frac{df}{dx}(x,z)
 
-3. Swap :math:`2z^3` with a constant value :math:`b`
+3. :math:`2z^3` ifadesini sabit (constant) :math:`b` ile değiştir
 
 .. math::
 
   f(x,z) = bx^2
 
-4. Calculate the derivative with :math:`b` constant
+4. :math:`b` sabitken türevini al
 
 .. math::
 
@@ -336,11 +336,11 @@ Here are the steps to calculate the gradient for a multivariable function:
                 & = \lim_{h\to0} 2bx + bh \\
   \end{align}
 
-As :math:`h —> 0`...
+ :math:`h —> 0` iken...
 
   2bx + 0
 
-5. Swap :math:`2z^3` back into the equation, to find the derivative with respect to :math:`x`.
+5. :math:`x`'e göre türev için :math:`2z^3` ifadesini geri koy
 
 .. math::
 
@@ -349,13 +349,13 @@ As :math:`h —> 0`...
                      &= 4z^3x
   \end{align}
 
-6. Repeat the above steps to calculate the derivative with respect to :math:`z`
+6. :math:`z`'ye göre türevi hesaplamak için benzer adımları uygula
 
 .. math::
 
   \frac{df}{dz}(x,z) = 6x^2z^2
 
-7. Store the partial derivatives in a gradient
+7. Kısmi türevleri gradient vektöründe sakla
 
 .. math::
 
@@ -369,19 +369,19 @@ As :math:`h —> 0`...
       \end{bmatrix}
 
 
-Directional derivatives
------------------------
+Directional Derivatives (Yönlü Türevler)
+----------------------------------------
 
-Another important concept is directional derivatives. When calculating the partial derivatives of multivariable functions we use our old technique of analyzing the impact of infinitesimally small increases to each of our independent variables. By increasing each variable we alter the function output in the direction of the slope.
+Diğer önemli kavram directional derivative'dır. Çok değişkenli fonksiyonlarda partial derivative hesaplarken her bağımsız değişkende sonsuz küçük artışların etkisini inceleriz. Her bir değişkeni artırmak fonksiyon çıktısını slope yönünde değiştirir.
 
-But what if we want to change directions? For example, imagine we’re traveling north through mountainous terrain on a 3-dimensional plane. The gradient we calculated above tells us we’re traveling north at our current location. But what if we wanted to travel southwest? How can we determine the steepness of the hills in the southwest direction? Directional derivatives help us find the slope if we move in a direction different from the one specified by the gradient.
+Peki yön değiştirmek istersek? 3B arazide kuzeye doğru ilerlediğimizi ve gradient'in de bulunduğumuz noktada kuzeyi gösterdiğini varsayalım. Ama güneybatı (southwest) yönüne gitmek istersek o yöndeki eğimi (steepness) nasıl buluruz? Directional derivative, gradient'in gösterdiğinden farklı bir yönde hareket edersek slope'u hesaplamamıza yardım eder.
 
 
-.. rubric:: Math
+.. rubric:: Math (Matematik)
 
-The directional derivative is computed by taking the dot product [11]_ of the gradient of :math:`f` and a unit vector :math:`\vec{v}` of "tiny nudges" representing the direction. The unit vector describes the proportions we want to move in each direction. The output of this calculation is a scalar number representing how much :math:`f` will change if the current input moves with vector :math:`\vec{v}`.
+Directional derivative, :math:`f` fonksiyonunun gradient'i ile yönü temsil eden bir unit vector (birim vektör) :math:`\vec{v}`'nin dot product'ının [11]_ alınmasıyla hesaplanır. Unit vector her eksende ne oranda ilerlemek istediğimizi gösterir. Çıktı, girdi :math:`\vec{v}` yönünde küçükçe itilirse :math:`f`'in ne kadar değişeceğini gösteren bir scalar (skaler) değerdir.
 
-Let's say you have the function :math:`f(x,y,z)` and you want to compute its directional derivative along the following vector [2]_:
+Elinizde :math:`f(x,y,z)` fonksiyonu olsun ve aşağıdaki vektör boyunca directional derivative hesaplamak isteyin [2]_: 
 
 .. math::
 
@@ -392,7 +392,7 @@ Let's say you have the function :math:`f(x,y,z)` and you want to compute its dir
   \end{bmatrix}
 
 
-As described above, we take the dot product of the gradient and the directional vector:
+Yukarıda anlatıldığı gibi gradient ile yön vektörünün dot product'ını alırız:
 
 .. math::
 
@@ -409,22 +409,22 @@ As described above, we take the dot product of the gradient and the directional 
     \end{bmatrix}
 
 
-We can rewrite the dot product as:
+Dot product'ı şu şekilde yeniden yazabiliriz:
 
 .. math::
 
   \nabla_\vec{v} f = 2 \frac{df}{dx} + 3 \frac{df}{dy} - 1 \frac{df}{dz}
 
-This should make sense because a tiny nudge along :math:`\vec{v}` can be broken down into two tiny nudges in the x-direction, three tiny nudges in the y-direction, and a tiny nudge backwards, by −1 in the z-direction.
+Bu anlamlıdır; çünkü :math:`\vec{v}` yönündeki küçük bir itme x yönünde iki, y yönünde üç ve z yönünde −1 (geri) küçük itmenin bileşimidir.
 
 
-Useful properties
------------------
+Useful Properties (Faydalı Özellikler)
+--------------------------------------
 
-There are two additional properties of gradients that are especially useful in deep learning. The gradient of a function:
+Derin öğrenmede (deep learning) gradient ile ilgili özellikle yararlı iki özellik:
 
-  #. Always points in the direction of greatest increase of a function (`explained here <https://betterexplained.com/articles/understanding-pythagorean-distance-and-the-gradient>`_)
-  #. Is zero at a local maximum or local minimum
+  #. Gradient her zaman fonksiyonun en hızlı artış (greatest increase) yönünü gösterir (`açıklama <https://betterexplained.com/articles/understanding-pythagorean-distance-and-the-gradient>`_)
+  #. Yerel maksimum (local maximum) veya yerel minimum (local minimum) noktalarında gradient sıfırdır.
 
 
 
@@ -433,10 +433,10 @@ There are two additional properties of gradients that are especially useful in d
 
 .. _integrals:
 
-Integrals
-=========
+Integrals (İntegraller)
+=======================
 
-The integral of :math:`f(x)` corresponds to the computation of the area under the graph of :math:`f(x)`. The area under :math:`f(x)` between the points :math:`x=a` and :math:`x=b` is denoted as follows:
+Bir :math:`f(x)` fonksiyonunun integral'i, grafiğinin altında kalan alanın hesaplanmasıdır. :math:`x=a` ile :math:`x=b` arasında kalan alan şöyle gösterilir:
 
 .. math::
 
@@ -445,19 +445,19 @@ The integral of :math:`f(x)` corresponds to the computation of the area under th
 .. image:: images/integral_definition.png
    :align: center
 
-The area :math:`A(a,b)` is bounded by the function :math:`f(x)` from above, by the :math:`x`-axis from below, and by two vertical lines at :math:`x=a` and :math:`x=b`. The points :math:`x=a` and :math:`x=b` are called the limits of integration. The :math:`\int` sign comes from the Latin word summa. The integral is the "sum" of the values of :math:`f(x)` between the two limits of integration.
+:math:`A(a,b)` alanı üstte :math:`f(x)` fonksiyonu, altta :math:`x`-ekseni ve yanlarda :math:`x=a`, :math:`x=b` dikey çizgileriyle sınırlıdır. :math:`x=a`, :math:`x=b` noktaları limits of integration (integrasyon sınırları) olarak adlandırılır. :math:`\int` sembolü Latince "summa" (toplam) kelimesinden gelir. İntegral, bu iki sınır arasındaki :math:`f(x)` değerlerinin "toplamı"dır (sürekli toplam).
 
-The *integral function* :math:`F(c)` corresponds to the area calculation as a function of the upper limit of integration:
+*Integral function* :math:`F(c)`, üst limit (upper limit) :math:`c`'ye göre alanı veren fonksiyondur:
 
 .. math::
 
   F(c) \equiv \int_0^c \! f(x)\:dx\,.
 
-There are two variables and one constant in this formula. The input variable :math:`c` describes the upper limit of integration. The *integration variable* :math:`x` performs a sweep from :math:`x=0` until :math:`x=c`. The constant :math:`0` describes the lower limit of integration. Note that choosing :math:`x=0` for the starting point of the integral function was an arbitrary choice.
+Bu formülde iki değişken ve bir sabit vardır. Girdi değişkeni :math:`c` üst limittir. *Integration variable* :math:`x`, :math:`0`'dan :math:`c`'ye tarama (sweep) yapar. :math:`0` alt limittir (lower limit). Başlangıç noktasının 0 seçilmesi keyfidir (arbitrary).
 
-The integral function :math:`F(c)` contains the "precomputed" information about the area under the graph of :math:`f(x)`.  The derivative function :math:`f'(x)` tells us the "slope of the graph" property of the function :math:`f(x)` for all values of :math:`x`. Similarly, the integral function :math:`F(c)` tells us the "area under the graph" property of the function :math:`f(x)` for *all* possible limits of integration.
+Integral function :math:`F(c)`, :math:`f(x)` grafiği altındaki alan hakkında önceden hesaplanmış (precomputed) bilgiyi içerir. Derivative function :math:`f'(x)`, tüm :math:`x` değerleri için grafiğin slope (eğim) bilgisini verirken, :math:`F(c)` tüm olası integrasyon limitleri için grafiğin altındaki alan bilgisini verir.
 
-The area under :math:`f(x)` between :math:`x=a` and :math:`x=b` is obtained by calculating the *change* in the integral function as follows:
+:math:`x=a` ile :math:`x=b` arasındaki alan integral fonksiyonundaki *değişim* olarak hesaplanır:
 
 .. math::
 
@@ -469,15 +469,15 @@ The area under :math:`f(x)` between :math:`x=a` and :math:`x=b` is obtained by c
 
 
 
-Computing integrals
--------------------
+Computing Integrals (İntegralleri Yaklaşık Hesaplama)
+----------------------------------------------------
 
-We can approximate the total area under the function :math:`f(x)` between :math:`x=a` and :math:`x=b` by splitting the region into tiny vertical strips of width :math:`h`, then adding up the areas of the rectangular strips. The figure below shows how to compute the area under :math:`f(x)=x^2` between :math:`x=1` and :math:`x=3` by approximating it as four rectangular strips of width :math:`h=0.5`.
+:math:`x=a` ile :math:`x=b` arasında :math:`f(x)` altındaki toplam alanı, bölgeyi genişliği :math:`h` olan dikey şeritlere ayırıp her dikdörtgenin alanını toplayarak yaklaşıklarız. Aşağıdaki şekilde :math:`f(x)=x^2` için :math:`x=1` ile :math:`x=3` arasındaki alanın, :math:`h=0.5` genişlikli 4 dikdörtgen ile nasıl yaklaşıklandığı gösterilir.
 
 .. image:: images/integral_as_rectangular_strips.png
    :align: center
 
-Usually we want to choose :math:`h` to be a small number so that the approximation is accurate. Here is some sample code that performs integration.
+Genellikle approximation (yaklaşım) daha doğru olsun diye :math:`h` küçük seçilir. Aşağıda integrasyon yapan örnek kod var.
 
 ::
 
@@ -498,52 +498,52 @@ Usually we want to choose :math:`h` to be a small number so that the approximati
   computed, actual    # = 8.6662, 8.6666   # pretty close if you ask me...
 
 
-You can find integral functions using the derivative formulas and some reverse engineering. To find an integral function of the function :math:`f(x)`, we must find a function :math:`F(x)` such that :math:`F'(x)=f(x)`. Suppose you're given a function :math:`f(x)` and asked to find its integral function :math:`F(x)`:
+Integral function'ları türev formülleri (derivative rules) ve biraz tersine mühendislik (reverse engineering) ile bulabilirsiniz. :math:`f(x)` için bir integral function bulmak demek :math:`F'(x)=f(x)` olacak :math:`F(x)` fonksiyonunu bulmak demektir. :math:`f(x)` verilip integral function :math:`F(x)` sorulduğunu varsayalım:
 
 .. math::
 
    F(x) = \int \! f(x)\: dx.
 
-This problem is equivalent to finding a function :math:`F(x)` whose derivative is :math:`f(x)`:
+Bu, türevi :math:`f(x)` olan bir :math:`F(x)` bulma problemidir:
 
 .. math::
 
   F'(x) = f(x).
 
 
-For example, suppose you want to find the indefinite integral :math:`\int \!x^2\:dx`. We can rephrase this problem as the search for some function :math:`F(x)` such that
+Örneğin :math:`\int \!x^2\:dx` belirsiz integrali bulunmak istensin. Bu şu :math:`F(x)` fonksiyonunu aramakla eşdeğerdir:
 
 .. math::
 
   F'(x) = x^2.
 
-Remembering the derivative formulas we saw above, you guess that :math:`F(x)` must contain an :math:`x^3` term. Taking the derivative of a cubic term results in a quadratic term. Therefore, the function you are looking for has the form :math:`F(x)=cx^3`, for some constant :math:`c`. Pick the constant :math:`c` that makes this equation true:
+Türev kurallarını hatırlayarak :math:`F(x)`'in :math:`x^3` terimi içermesi gerektiğini tahmin ederiz; kubik terimin türevi ikinci dereceden terim verir. O halde aranan fonksiyon :math:`F(x)=c x^3` biçimindedir. :math:`c` sabitini şu denklemi sağlayacak şekilde seç:
 
 .. math::
 
   F'(x) = 3cx^2 = x^2.
 
-Solving :math:`3c=1`, we find :math:`c=\frac{1}{3}` and so the integral function is
+:math:`3c=1` çözülürse :math:`c=\frac{1}{3}` bulunur ve integral function:
 
 .. math::
 
   F(x) = \int x^2 \:dx = \frac{1}{3}x^3 + C.
 
-You can verify that :math:`\frac{d}{dx}\left[\frac{1}{3}x^3 + C\right] = x^2`.
+Doğrulama: :math:`\frac{d}{dx}\left[\frac{1}{3}x^3 + C\right] = x^2`.
 
-You can also verify Integrals using maths. Here is a set of `formulas <https://www.teachoo.com/5643/728/Integration-Formulas---Trig--Definite-Integrals-Properties-and-more/category/Miscellaneous/>`_ for your reference 
-
-
-Applications of integration
----------------------------
-
-Integral calculations have widespread applications to more areas of science than are practical to list here. Let's explore a few examples related to probabilities.
+Ek olarak çeşitli integral doğrulamaları için şu `formulas <https://www.teachoo.com/5643/728/Integration-Formulas---Trig--Definite-Integrals-Properties-and-more/category/Miscellaneous/>`_ kaynağına bakabilirsiniz.
 
 
-Computing probabilities
-~~~~~~~~~~~~~~~~~~~~~~~
+Applications of Integration (İntegrasyon Uygulamaları)
+-----------------------------------------------------
 
-A continuous random variable :math:`X` is described by its probability density function :math:`p(x)`. A probability density function :math:`p(x)` is a positive function for which the total area under the curve is :math:`1`:
+İntegral hesapları çok sayıda bilim alanında kullanılır. Burada probability (olasılık) ile ilgili birkaç örnek verelim.
+
+
+Computing Probabilities (Olasılık Hesaplama)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sürekli (continuous) bir random variable :math:`X`, probability density function (olabilirlik yoğunluk fonksiyonu) :math:`p(x)` ile tanımlanır. :math:`p(x)` eğrisi altındaki toplam alan 1 olan pozitif bir fonksiyondur:
 
 .. math::
 
@@ -553,7 +553,7 @@ A continuous random variable :math:`X` is described by its probability density f
 	   \qquad
 	   \int_{-\infty}^\infty p(x)\; dx = 1.
 
-The probability of observing a value of :math:`X` between :math:`a` and :math:`b` is given by the integral
+:math:`X`'in :math:`a` ile :math:`b` arasında değer alma olasılığı şu integral ile verilir:
 
 .. math::
 
@@ -561,15 +561,15 @@ The probability of observing a value of :math:`X` between :math:`a` and :math:`b
    =
 	 \int_a^b p(x)\; dx.
 
-Thus, the notion of integration is central to probability theory with continuous random variables.
+Böylece integrasyon kavramı sürekli random variable'lar içeren probability theory için merkezîdir.
 
-We also use integration to compute certain characteristic properties of the random variable. The *expected value* and the *variance* are two properties of any random variable :math:`X` that capture important aspects of its behaviour.
+Ayrıca integrali random variable'ın bazı karakteristik özelliklerini hesaplamak için kullanırız. *Expected value (beklenen değer / ortalama)* ve *variance (varyans)* :math:`X` için davranışına dair temel iki özelliktir.
 
 
-Expected value
-~~~~~~~~~~~~~~
+Expected Value (Beklenen Değer / Mean)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *expected value* of the random variable :math:`X` is computed using the formula
+Bir random variable :math:`X`'in *expected value*'ı şu formülle hesaplanır:
 
 .. math::
 
@@ -577,14 +577,14 @@ The *expected value* of the random variable :math:`X` is computed using the form
 	% \equiv \mathbb{E}_X[X]
 	= \int_{-\infty}^\infty x\, p(x).
 
-The expected value is a single number that tells us what value of :math:`X` we can expect to obtain on average from the random variable :math:`X`. The expected value is also called the *average* or the *mean* of the random variable :math:`X`.
+Expected value, random variable :math:`X`'in ortalama olarak hangi değeri vereceğini gösterir; aynı zamanda *average* veya *mean* olarak da adlandırılır.
 
 
 
-Variance
-~~~~~~~~
+Variance (Varyans)
+~~~~~~~~~~~~~~~~~~
 
-The *variance* of the random variable :math:`X` is defined as follows:
+Random variable :math:`X` için *variance* şu şekilde tanımlanır:
 
 .. math::
 
@@ -592,10 +592,9 @@ The *variance* of the random variable :math:`X` is defined as follows:
 	 % \equiv  \mathbb{E}_X\!\big[(X-\mu)^2\big] 
 	 = \int_{-\infty}^\infty (x-\mu)^2 \, p(x).
 
-The variance formula computes the expectation of the squared distance of the random variable :math:`X` from its expected value. The variance :math:`\sigma^2`, also denoted :math:`\textrm{var}(X)`, gives us an indication of how clustered or spread the values of :math:`X` are. A small variance indicates the outcomes of :math:`X` are tightly clustered near the expected value :math:`\mu`, while a large variance indicates the outcomes of :math:`X` are widely spread. The square root of the variance is called the *standard deviation* and is usually denoted :math:`\sigma`.
+Varyans formülü :math:`X`'in expected value :math:`\mu`'dan karesel uzaklığının beklentisini hesaplar. :math:`\sigma^2` ya da :math:`var(X)` değerleri :math:`X` sonuçlarının ne kadar yaygın (spread) ya da kümelenmiş (clustered) olduğunu gösterir. Küçük varyans sonuçların :math:`\mu` etrafında sıkı kümelendiğini, büyük varyans genişçe yayıldığını ifade eder. Varyansın kareköküne *standard deviation (standart sapma)* denir ve :math:`\sigma` ile gösterilir.
 
-The expected value :math:`\mu` and the variance :math:`\sigma^2` are two central concepts in probability theory and statistics because they allow us to characterize any random variable. The expected value is a measure of the *central tendency* of the random variable,  while the variance :math:`\sigma^2` measures its *dispersion*.
-Readers familiar with concepts from physics can think of the expected value as the *centre of mass* of the distribution, and the variance as the *moment of inertia* of the distribution.
+Expected value :math:`\mu` ve variance :math:`\sigma^2` probability ve statistics alanlarında herhangi bir random variable'ı karakterize etmemizi sağladığı için merkezî kavramlardır. Expected value *central tendency* (merkezi eğilim), variance ise *dispersion* (dağılım) ölçüsüdür. Fiziğe aşina olanlar expected value'u dağılımın *centre of mass*'ı, variance'ı ise *moment of inertia* (atalet momenti) gibi düşünebilir.
 
 
 

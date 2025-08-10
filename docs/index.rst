@@ -1,16 +1,16 @@
 
-=========================
-Machine Learning Glossary
-=========================
+=============================================
+Machine Learning Glossary (Makine Öğrenmesi Sözlüğü)
+=============================================
 
-Brief visual explanations of machine learning concepts with diagrams, code examples and links to resources for learning more.
+Machine learning kavramlarının kısa ve görsel açıklamaları; diyagramlar, code (kod) örnekleri ve daha fazla öğrenme için kaynak linkleri. (English teknik terimler korunmuştur.)
 
 .. warning::
 
-    If you find errors, please raise an `issue <https://github.com/bfortuner/ml-cheatsheet/issues>`_ or `contribute <https://github.com/bfortuner/ml-cheatsheet/blob/master/README.md>`_ a better definition!
+    Hata görürseniz lütfen bir `issue <https://github.com/bfortuner/ml-cheatsheet/issues>`_ açın ya da daha iyi bir tanım için `contribute (katkı) <https://github.com/bfortuner/ml-cheatsheet/blob/master/README.md>`_.
 
 .. toctree::
-    :caption: Basics
+    :caption: Basics (Temeller)
     :maxdepth: 1
 
     linear_regression
@@ -19,7 +19,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
     glossary
 
 .. toctree::
-    :caption: Math
+    :caption: Math (Matematik)
     :maxdepth: 1
 
     calculus
@@ -30,7 +30,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Neural Networks
+    :caption: Neural Networks (Yapay Sinir Ağları)
 
     nn_concepts
     forwardpropagation
@@ -44,7 +44,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Algorithms (TODO)
+    :caption: Algorithms (Algoritmalar) (TODO)
 
     Classification <classification_algos>
     Clustering <clustering_algos>
@@ -53,7 +53,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Resources
+    :caption: Resources (Kaynaklar)
     :titlesonly:
 
     datasets
@@ -63,7 +63,7 @@ Brief visual explanations of machine learning concepts with diagrams, code examp
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contributing
+    :caption: Contributing (Katkı)
     :titlesonly:
 
     How to contribute <contribute>
